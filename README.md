@@ -1,7 +1,7 @@
 # 뚜벅뚜벅, 서울 어디든 안전하게 "뚜밤뚜밤"
 
 <div align="center">
-<img width="440" alt="image" src="./ReadmeImgs/1 (3).png">
+<img width="600" alt="image" src="./ReadmeImgs/1 (3).png">
 
 ![Hits](https://hits.sh/github.com/seoul-night/seoul-night.svg?style=for-the-badge)
 
@@ -10,6 +10,8 @@
 # 뚜밤뚜밤
 
 > **2024 열린데이터광장 공공데이터 활용 창업 경진대회 우수상 (220팀 중 3위)** <br/> **개발기간: 2024.04 ~ 2024.06**
+
+<img src="./ReadmeImgs/우수상.jpg" alt="온보딩1" width="30%">
 
 ## 배포 주소
 
