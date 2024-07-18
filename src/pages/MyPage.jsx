@@ -9,12 +9,11 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/logo.png";
 import logo2 from "../assets/logo2.png";
 import like from "../assets/icons/like.png";
 import complete from "../assets/icons/complete.png";
 import home from "../assets/icons/home.png";
-import MyColored from "../assets/icons/MyColored.png";
+import MyColored from "../assets/sodam/ic/MyColored.png";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { userDataState, userIdState } from "../atoms";
@@ -26,10 +25,12 @@ import {
   logoutRequest,
 } from "../services/api"; // handleLogout 제거
 import { jwtDecode } from "jwt-decode";
+import place from "../assets/sodam/ic/place.png";
+import friends from "../assets/sodam/ic/friends.png";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -98,10 +99,10 @@ const Progress = styled.div`
 `;
 
 const Text = styled.h2`
-  color: white;
+  color: #1c1e1f;
 
   a {
-    color: white;
+    color: #1c1e1f;
   }
 `;
 const Tab = styled.div`
@@ -118,7 +119,7 @@ const TabWrap = styled.div`
   display: flex;
   gap: 10px;
   padding-bottom: 25px;
-  border-bottom: 2px solid #242430;
+  border-bottom: 2px solid #ebeef1;
 `;
 
 const LogWrap = styled.div`
@@ -129,7 +130,7 @@ const LogWrap = styled.div`
 `;
 
 const Calendar = styled.i`
-  color: white;
+  color: #27c384;
   width: 18px;
   height: 18px;
   margin-right: -5px;
@@ -206,17 +207,14 @@ const MyPage = () => {
             </div>
           </TextWrap>
         </ProfileWrap>
-        <div>
+        {/* <div>
           <h3 style={{ color: "white", fontSize: "12px", lineHeight: "18px" }}>
             현재 산책 진행률 {userData.exp % 100}%
           </h3>
-          <ProgressBar>
-            <Progress style={{ "--progress-width": `${progressWidth}%` }} />
-          </ProgressBar>
-        </div>
+        </div> */}
         <Tab
           style={{
-            backgroundColor: "#242430",
+            backgroundColor: "#F6F8FA",
             marginBottom: "10px",
             width: "100%",
             height: "42px",
@@ -231,12 +229,12 @@ const MyPage = () => {
           <Calendar>
             <FontAwesomeIcon icon={faCalendar} />
           </Calendar>
-          <Text style={{ color: "#B7C0C6", fontSize: "12px" }}>
-            밤산책을 시작한 지
+          <Text style={{ color: "#1C1E1F", fontSize: "12px" }}>
+            소담소담을 시작한 지
           </Text>
           <Text
             style={{
-              color: "#989DFF",
+              color: "#007D4B",
               fontSize: "12px",
               position: "relative",
               left: "-8px",
@@ -253,7 +251,7 @@ const MyPage = () => {
               alignItems: "center",
               justifyContent: "center",
               width: "50%",
-              backgroundColor: "#333344",
+              backgroundColor: "#E1F2FF",
               height: "96px",
             }}
             onClick={() => {
@@ -264,7 +262,7 @@ const MyPage = () => {
               icon={faCheckCircle}
               style={{ color: "#1FA1FF", fontSize: "20px" }}
             /> */}
-            <img src={complete} />
+            <img src={friends} />
             <div style={{ display: "flex", alignItems: "center" }}>
               <Text style={{ fontSize: "14px" }}>완료한 코스</Text>
               <Badge
@@ -272,6 +270,7 @@ const MyPage = () => {
                   fontSize: "14px",
                   marginLeft: "5px",
                   display: "inline-block",
+                  backgroundColor: "#3EB9FE",
                 }}
               >
                 {userData.finishedCount}
@@ -285,14 +284,14 @@ const MyPage = () => {
               alignItems: "center",
               justifyContent: "center",
               width: "50%",
-              backgroundColor: "#333344",
+              backgroundColor: "#FFF0F4",
               height: "96px",
             }}
             onClick={() => {
               navigate("/liked");
             }}
           >
-            <img src={like} />
+            <img src={place} />
             <div style={{ display: "flex", alignItems: "center" }}>
               <Text style={{ fontSize: "14px" }}>찜한 코스</Text>
               <Badge
@@ -300,6 +299,7 @@ const MyPage = () => {
                   fontSize: "14px",
                   marginLeft: "5px",
                   display: "inline-block",
+                  backgroundColor: "#FF90B2",
                 }}
               >
                 {userData.pickedCount}
@@ -309,7 +309,7 @@ const MyPage = () => {
         </TabWrap>
         <LogWrap>
           <Text
-            style={{ fontSize: "14px", color: "#F6F8FA", height: "20px" }}
+            style={{ fontSize: "14px", color: "#1C1E1F", height: "20px" }}
             onClick={() => {
               // navigate("/");
               handleLogout();
@@ -336,8 +336,8 @@ const MyPage = () => {
       <Footer
         home={home}
         my={MyColored}
-        homeColor={"#73777D"}
-        myColor={"#989DFF"}
+        homeColor={"#91919C"}
+        myColor={"#27C384"}
       />
     </HomeWrapper>
   );
