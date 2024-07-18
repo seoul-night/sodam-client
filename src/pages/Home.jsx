@@ -1,22 +1,18 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
-import homeback from "../assets/homeback.png";
-import logo from "../assets/logo.png";
-import location from "../assets/icons/location.png";
-import homebtn1 from "../assets/homebtn1.png";
-import homebtn2 from "../assets/homebtn2.png";
-import homeColored from "../assets/icons/homeColored.png";
-import My from "../assets/icons/My.png";
+import homeback from "../assets/sodam/img/homeback.png";
+import homeColored from "../assets/sodam/ic/homeColored.png";
+import My from "../assets/sodam/ic/My.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { geolocationState, userDataState } from "../atoms";
 import { useState } from "react";
 import { locationState } from "../atoms";
-import logo2 from "../assets/logo2.png";
-import location2 from "../assets/icons/location2.png";
-import img_homebtn1 from "../assets/img_homebtn1.png";
-import img_homebtn2 from "../assets/img_homebtn2.png";
+import logo from "../assets/sodam/img/logo.png";
+import location from "../assets/sodam/ic/location.png";
+import homebtn1 from "../assets/sodam/img/homebtn1.png";
+import homebtn2 from "../assets/sodam/img/homebtn2.png";
 import KakaoLogin, { fetchAttractions, keywordSearch } from "../services/api";
 import { createRequest } from "../utils/api-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,13 +22,13 @@ const HomeWrapper = styled.div`
   z-index: 1;
   min-height: 100vh;
   padding-bottom: 90px;
-  background: #1c1c26;
+  background: #ffffff;
   overflow: auto;
   position: relative;
 `;
 const Head = styled.div`
   position: fixed;
-  background-color: #3f3fc4;
+  background-color: #ffffff;
   top: 0px;
   display: flex;
   width: 100%;
@@ -44,12 +40,12 @@ const Head = styled.div`
   h2 {
     font-size: 16px;
     font-weight: 600;
-    color: #f6f8fa;
+    color: #1c1e1f;
   }
 
   span {
     font-size: 12px;
-    color: #f6f8fa;
+    color: #1c1e1f;
     font-weight: 500;
   }
 `;
@@ -67,17 +63,27 @@ const Region = styled.i`
   margin-right: 5px;
 `;
 
-const Pic = styled.img`
-  width: 70px;
-  height: 70px;
+const Pic = styled.div`
+  width: 76px; /* 이미지 크기 + 테두리 두께 3px */
+  height: 76px; /* 이미지 크기 + 테두리 두께 3px */
   border-radius: 50%;
-  border: 3px solid #5e66ff;
   margin-top: 55px;
   margin-bottom: 25px;
+  background: linear-gradient(45deg, #31d191, #3eb9fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* border: 3px solid white; 내부 테두리 색상 */
+  }
 `;
 
 const Name = styled.span`
-  color: #5e66ff;
+  color: #15a36a;
   font-size: 20px;
   font-weight: 500;
 `;
@@ -88,7 +94,7 @@ const GoWalk = styled.div`
 
 const Text = styled.span`
   color: #f6f8fa;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 32px;
 `;
@@ -97,7 +103,7 @@ const Title = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #cdcddc;
+  color: black;
   margin-bottom: 10px;
 `;
 
@@ -105,6 +111,7 @@ const Box = styled.div`
   height: 150px;
   background-color: #343449;
   padding: 15px;
+  padding-bottom: 0px;
   box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -113,7 +120,7 @@ const Box = styled.div`
 const SubText = styled.p`
   font-size: 12px;
   line-height: 18px;
-  color: #b7c0c6;
+  color: #f6f8fa;
 `;
 
 const LongBox = styled(Box)`
@@ -148,6 +155,7 @@ const Badge = styled.h4`
 `;
 
 const SearchBar = styled.div`
+  font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -159,7 +167,7 @@ const SearchBar = styled.div`
   padding: 8px 10px 8px 10px;
   margin-left: 30px;
   margin-right: 30px;
-  background-color: #333344;
+  background-color: #ebeef1;
 `;
 
 const Home = () => {
@@ -258,12 +266,11 @@ const Home = () => {
         <div
           style={{
             justifyContent: "space-between",
-
             display: "flex",
             width: "100%",
           }}
         >
-          <img src={logo2} style={{ height: "24px" }} />
+          <img src={logo} style={{ height: "24px" }} />
 
           <div
             style={{
@@ -275,21 +282,23 @@ const Home = () => {
             }}
           >
             <img
-              src={location2}
-              style={{ marginRight: "3px", height: "20px" }}
+              src={location}
+              style={{ marginRight: "3px", height: "18px" }}
             />
             <span>{locationName}</span>
           </div>
         </div>
       </Head>
       <UserWrap>
-        <Pic src={userData.profile} />
+        <Pic>
+          <img src={userData.profile} />
+        </Pic>
         <div>
           <Name>{userData.nickName}</Name>
-          <Text>님,</Text>
+          <Text style={{ color: "black" }}>님,</Text>
         </div>
         <div>
-          <Text>오늘은 서울시 어디로 가볼까요?</Text>
+          <Text style={{ color: "black" }}>안전하게 어디로 도착할까요?</Text>
         </div>
       </UserWrap>
       <SearchBar onClick={() => navigate("/search")}>
@@ -297,7 +306,7 @@ const Home = () => {
         도착하고 싶은 곳 검색
       </SearchBar>
       <GoWalk>
-        <Title>다양한 관광지를 추천해요</Title>
+        <Title>부모님의 위치를 보여줘요</Title>
         <div
           style={{
             display: "flex",
@@ -306,21 +315,21 @@ const Home = () => {
           }}
         >
           <Link to="/nearby">
-            <Box style={{ width: "154px", backgroundColor: "#5F53E8" }}>
-              <Text>현 위치 기반</Text>
-              <SubText>내 주변을 둘러봐요</SubText>
+            <Box style={{ width: "154px", backgroundColor: "#27C384" }}>
+              <SubText>안전하게</SubText>
+              <Text>부모님 위치 확인 </Text>
               <img
-                src={img_homebtn1}
+                src={homebtn1}
                 style={{ position: "absolute", bottom: "0", right: "0" }}
               />
             </Box>
           </Link>
           <Link to="/popular">
-            <Box style={{ width: "154px", backgroundColor: "#467FEE" }}>
-              <Text>인기있는</Text>
-              <SubText>사람들이 많이 다녀요</SubText>
+            <Box style={{ width: "154px", backgroundColor: "#3EB9FE" }}>
+              <SubText>빠르게</SubText>
+              <Text>내 위치 보내기</Text>
               <img
-                src={img_homebtn2}
+                src={homebtn2}
                 style={{ position: "absolute", bottom: "0", right: "0" }}
               />
             </Box>
@@ -328,7 +337,7 @@ const Home = () => {
         </div>
       </GoWalk>
       <GoWalk>
-        <Title>둘러봐야 할 서울의 관광지</Title>
+        <Title>부모님과 함께하기 좋은 여행지</Title>
         <div
           style={{
             boxSizing: "border-box",
@@ -359,8 +368,8 @@ const Home = () => {
       <Footer
         home={homeColored}
         my={My}
-        homeColor={"#989DFF"}
-        myColor={"#73777D"}
+        homeColor={"#27C384"}
+        myColor={"#91919C"}
       />
     </HomeWrapper>
   );

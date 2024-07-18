@@ -13,11 +13,11 @@ const Foot = styled.div`
   width: 100%;
   max-width: var(--max-width);
   height: 55px;
-  border-top: 1px solid #7a7a83;
+  border-top: 1px solid #ebeef1;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #343449;
+  background-color: #ffffff;
 `;
 
 const IconWrapper = styled.div`
@@ -37,20 +37,12 @@ const Footer = ({ home, my, homeColor, myColor }) => {
     <Foot>
       <Link to={"/home"}>
         <IconWrapper>
-          {/* <FontAwesomeIcon
-          icon={faHome}
-          style={{ fontSize: "22px", color: "#FFFFFF", marginBottom: "10px" }}
-        /> */}
           <img src={home} alt="" style={{ width: "20px", height: "20px" }} />
           <Text style={{ color: homeColor }}>홈</Text>
         </IconWrapper>
       </Link>
       <Link to={"/mypage"}>
         <IconWrapper>
-          {/* <FontAwesomeIcon
-          icon={faUser}
-          style={{ fontSize: "22px", color: "#FFFFFF", marginBottom: "10px" }}
-        /> */}
           <img src={my} alt="" style={{ width: "20px", height: "20px" }} />
           <Text style={{ color: myColor }}>마이</Text>
         </IconWrapper>

@@ -2,7 +2,7 @@
 import { createRequest } from "../utils/api-utils";
 import axios from "axios";
 
-const BASE_URL = "https://ddubam.site/api";
+const BASE_URL = "https://sodamsodam.site/api";
 // const BASE_URL = "http://ddubam.site:8080/api";
 
 const APP_KEY = process.env.REACT_APP_APP_KEY;

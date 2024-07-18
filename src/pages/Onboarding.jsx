@@ -6,8 +6,8 @@ import {
   faCircle,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import onboard1 from "../assets/onboard1.png";
-import onboard2 from "../assets/onboard2.png";
+import onboard1 from "../assets/sodam/img/onboard1.png";
+import onboard2 from "../assets/sodam/img/onboard2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { geolocationState, userDataState, locationState } from "../atoms";
@@ -29,7 +29,7 @@ const DotWrapper = styled.div`
 `;
 
 const Dot = styled.i`
-  color: white;
+  color: #dfdff1;
   font-size: 6px;
   margin: 2px;
 `;

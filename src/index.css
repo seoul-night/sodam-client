@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e8e7e7;
 }
 
 code {
@@ -31,7 +32,7 @@ code {
   /* min-height: 750px; */
   margin-left: auto;
   margin-right: auto;
-  background-color: #f2f2f2e1;
+  background-color: #ffffff;
 }
 
 /* 모바일 100vh 필요한 곳에서 사용

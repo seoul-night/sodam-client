@@ -1,6 +1,6 @@
 import { ddubamAxios } from "./http-commons";
 
-const BASE_URL = "https://ddubam.site/api";
+const BASE_URL = "https://sodamsodam.site/api";
 // const BASE_URL = "http://localhost:8080/api";
 
 // 공통 요청 함수
