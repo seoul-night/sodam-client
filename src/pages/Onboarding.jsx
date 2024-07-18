@@ -11,6 +11,7 @@ import onboard2 from "../assets/sodam/img/onboard2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { geolocationState, userDataState, locationState } from "../atoms";
+import kakaoIcon from "../assets/sodam/ic/kakao.png";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -47,12 +48,12 @@ const StartLink = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: ${(props) => (props.active ? "#5E66FF" : "#464b53")};
+  background-color: ${(props) => (props.active ? "#FEE500" : "#464b53")};
   border-radius: 10px;
   margin: auto;
   z-index: 3;
   cursor: ${(props) => (props.active ? "pointer" : "default")};
-  color: ${(props) => (props.active ? "white" : "#b7c0c6")};
+  color: ${(props) => (props.active ? "black" : "white")};
   font-size: 16px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
@@ -261,7 +262,8 @@ const Onboarding = () => {
 
       <BtnWrap>
         <StartLink onClick={handleClick} active={currentPage === 1 ? 1 : 0}>
-          뚜밤뚜밤 시작하기
+          <img src={kakaoIcon} style={{ marginRight: "10px" }} />
+          카카오로 로그인하기
         </StartLink>
       </BtnWrap>
     </HomeWrapper>

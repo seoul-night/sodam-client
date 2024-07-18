@@ -16,7 +16,8 @@ import homebtn2 from "../assets/sodam/img/homebtn2.png";
 import KakaoLogin, { fetchAttractions, keywordSearch } from "../services/api";
 import { createRequest } from "../utils/api-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
+import chatIcon from "../assets/sodam/ic/chatIcon.png";
 
 const HomeWrapper = styled.div`
   z-index: 1;
@@ -94,9 +95,8 @@ const GoWalk = styled.div`
 
 const Text = styled.span`
   color: #f6f8fa;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 32px;
 `;
 
 const Title = styled.p`
@@ -111,7 +111,7 @@ const Box = styled.div`
   height: 150px;
   background-color: #343449;
   padding: 15px;
-  padding-bottom: 0px;
+  /* padding-bottom: 0px; */
   box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -168,6 +168,30 @@ const SearchBar = styled.div`
   margin-left: 30px;
   margin-right: 30px;
   background-color: #ebeef1;
+`;
+
+const ChatWrap = styled.div`
+  background-color: #f6f8fa;
+  font-size: 14px;
+  height: 52px;
+  width: calc(100%-60px);
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-right: 20px;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-right: 30px;
+
+  h4 {
+    font-size: 14px;
+    color: #1c1e1f;
+  }
+  i {
+    color: #1c1e1f;
+  }
 `;
 
 const Home = () => {
@@ -326,7 +350,7 @@ const Home = () => {
           </Link>
           <Link to="/popular">
             <Box style={{ width: "154px", backgroundColor: "#3EB9FE" }}>
-              <SubText>빠르게</SubText>
+              <SubText>자식에게</SubText>
               <Text>내 위치 보내기</Text>
               <img
                 src={homebtn2}
@@ -365,6 +389,23 @@ const Home = () => {
           })}
         </div>
       </GoWalk>
+      <ChatWrap>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <img
+            src={chatIcon}
+            style={{ width: "44px", marginRight: "10px", marginLeft: "2px" }}
+          />
+          <h4>AI 챗봇에 물어보기</h4>
+        </div>
+        <FontAwesomeIcon icon={faChevronRight} />
+      </ChatWrap>
       <Footer
         home={homeColored}
         my={My}
