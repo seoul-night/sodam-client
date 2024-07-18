@@ -15,7 +15,7 @@ import close from "../assets/close.png";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -29,7 +29,7 @@ const Chevron = styled.i`
   padding-right: 16px;
   padding-top: 10px;
   padding-bottom: 10px;
-  color: #f6f8fa;
+  color: #1c1e1f;
   padding-left: 4px;
 `;
 
@@ -50,7 +50,7 @@ const SearchInput = styled.input`
   padding: 8px 10px;
   height: 37px;
   box-sizing: border-box;
-  background-color: #333344;
+  background-color: #ebeef1;
   color: #91919c;
   font-size: 14px;
   border: none;
@@ -65,7 +65,7 @@ const SearchInput = styled.input`
     width: auto; /* 제출 버튼은 고정된 너비 */
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    background-color: #444455;
+    background-color: #91919c;
     color: #fff;
     cursor: pointer;
   }
@@ -80,12 +80,12 @@ const TextWrap = styled.div`
 `;
 
 const GrayText = styled.span`
-  color: #91919c;
+  color: #1c1e1f;
   font-size: 14px;
 `;
 
 const WhiteText = styled.span`
-  color: #f6f8fa;
+  color: #1c1e1f;
   font-size: 14px;
 `;
 
@@ -105,11 +105,13 @@ const KeywordUl = styled.ul``;
 const KeywordLi = styled.li`
   font-size: 14px;
   color: #f6f8fa;
+  background-color: #f6f8fa;
   margin-bottom: 8px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid #5a5a76;
+  /* border: 1px solid #5a5a76; */
+  color: #1c1e1f;
   padding: 16px 12px;
 `;
 
@@ -286,7 +288,7 @@ const Search = () => {
             <WhiteText style={{ fontSize: "16px" }}>
               검색 결과가 없습니다
             </WhiteText>
-            <GrayText style={{ fontSize: "16px" }}>
+            <GrayText style={{ fontSize: "16px", color: "#797982" }}>
               다른 키워드로 검색해보세요
             </GrayText>
           </Nothing>
