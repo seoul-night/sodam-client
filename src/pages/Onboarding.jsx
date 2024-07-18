@@ -14,7 +14,7 @@ import { geolocationState, userDataState, locationState } from "../atoms";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -34,10 +34,10 @@ const Dot = styled.i`
   margin: 2px;
 `;
 
-const GrayDot = styled.i`
+const GreenDot = styled.i`
   font-size: 6px;
   margin: 2px;
-  color: #464b53;
+  color: #27c384;
 `;
 
 const StartLink = styled.div`
@@ -71,13 +71,13 @@ const BtnWrap = styled.div`
 
 const MainText = styled.h2`
   font-size: 24px;
-  color: #f6f8fa;
+  color: #1c1e1f;
   margin: 15px 0px 0px 30px;
 `;
 
 const SubText = styled.h4`
   font-size: 16px;
-  color: #b7c0c6;
+  color: #797982;
   font-weight: 500;
   margin: 10px 0px 0px 30px;
 `;
@@ -209,15 +209,15 @@ const Onboarding = () => {
           <Dot>
             <FontAwesomeIcon icon={faCircle} />
           </Dot>
-          <GrayDot>
+          <GreenDot>
             <FontAwesomeIcon icon={faCircle} />
-          </GrayDot>
+          </GreenDot>
         </DotWrapper>
       ) : (
         <DotWrapper>
-          <GrayDot>
+          <GreenDot>
             <FontAwesomeIcon icon={faCircle} />
-          </GrayDot>
+          </GreenDot>
           <Dot>
             <FontAwesomeIcon icon={faCircle} />
           </Dot>
@@ -225,21 +225,20 @@ const Onboarding = () => {
       )}
       <ViewWrapper offset={-50 * currentPage}>
         <View>
-          <MainText>뚜벅뚜벅, 밤에도 안전하게 </MainText>
-          <MainText>걸을 수 있어요</MainText>
+          <MainText>부모님의 건강을 위해 </MainText>
+          <MainText>산책을 권유해보세요</MainText>
           <SubWrap>
-            <SubText>잠자기 전 가볍게 걸어보세요.</SubText>
-            <SubText>스트레스가 줄고 교감 신경계가 진정되어</SubText>
+            <SubText>자주 몸을 움직이는 86.1%의 어르신이</SubText>
+            <SubText>이전보다 더 건강해졌다고 합니다</SubText>
             <SubText>수면에 도움을 줍니다.</SubText>
           </SubWrap>
         </View>
         <View>
-          <MainText>안전한 경로안내는 </MainText>
-          <MainText>뚜밤뚜밤과 함께</MainText>
+          <MainText>언제나 이동은 </MainText>
+          <MainText>소담소담과 함께</MainText>
           <SubWrap>
-            <SubText>안전한 경로안내 서비스, 뚜밤뚜밤!</SubText>
-            <SubText>CCTV와 가로등, 서울시 관광지를 기반으로</SubText>
-            <SubText>다양한 경로를 추천해드려요</SubText>
+            <SubText>어르신의 안전한 보행을 책임지는 서비스.</SubText>
+            <SubText>지금 바로 시작해 보세요!</SubText>
           </SubWrap>
         </View>
       </ViewWrapper>
