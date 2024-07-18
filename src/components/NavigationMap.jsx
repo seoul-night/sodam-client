@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Map, MapMarker, Polyline, useMap } from "react-kakao-maps-sdk";
 import map_marker from "../assets/icons/map_marker.png";
-import map_marker_cctv from "../assets/map_marker_cctv.png";
-import map_marker_start from "../assets/map_marker_start.png";
-import map_marker_end from "../assets/map_marker_end.png";
+import map_marker_cctv from "../assets/sodam/map_marker_cctv.png";
+import map_marker_start from "../assets/sodam/map_marker_start.png";
+import map_marker_end from "../assets/sodam/map_marker_end.png";
 import map_marker_light from "../assets/map_marker_light.png";
 import CloseModal from "./CloseModal";
 
@@ -100,7 +100,7 @@ const NavigationMap = ({
       <Polyline
         path={polylineCoordinates}
         strokeWeight={3}
-        strokeColor={"#5e66ff"}
+        strokeColor={"#27c384"}
       />
       <MapMarker
         position={{ lat: latitudeList[0], lng: longitudeList[0] }}

@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
-import CourseHeader from "../components/CourseHeader";
 import styled from "styled-components";
-import emptylike from "../assets/icons/emptylike.png";
-import like from "../assets/icons/like.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import KakaoMap from "../components/KakaoMap";
-import { useRecoilValue } from "recoil";
-import { locationState, userIdState } from "../atoms";
 import {
   coord2address,
   fetchNavigationData,
   fetchPathDetail,
 } from "../services/api";
 import NavigationMap from "../components/NavigationMap";
-import ic_cctv from "../assets/ic_cctv.png";
-import something from "../assets/something.png";
+import ic_cctv from "../assets/sodam/ic/ic_cctv.png";
+import something from "../assets/sodam/img/something.png";
 import close from "../assets/close.png";
 import map_marker from "../assets/icons/map_marker.png";
 import CloseModal from "../components/CloseModal";
@@ -36,18 +31,18 @@ const Header = styled.div`
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   padding: 20px;
 `;
 
 const Location = styled.div`
-  background-color: #333344;
+  background-color: #ebeef1;
   padding: 0px 10px;
   height: 37px;
   border-radius: 4px;
   display: flex;
   align-items: center;
-  color: #f6f8fa;
+  color: #1c1e1f;
   font-size: 14px;
 `;
 
@@ -63,21 +58,22 @@ const Wrap = styled.div`
 const Info = styled.div`
   box-sizing: border-box;
   width: 100%;
-  background-color: #242430;
+  background-color: #ffffff;
   padding: 12px 16px;
   border-radius: 10px;
+  border: 2px solid #27c384;
 `;
 
 const PurpleText = styled.h4`
   font-size: 12px;
-  color: #989dff;
+  color: #007d4b;
   font-weight: 500;
   line-height: 18px;
 `;
 
 const Time = styled.h4`
   font-size: 24px;
-  color: #f6f8fa;
+  color: #1c1e1f;
   font-weight: 500;
   margin-right: 6px;
 `;
@@ -85,13 +81,13 @@ const Time = styled.h4`
 const CCTVnumber = styled.h4`
   font-size: 12px;
   line-height: 18px;
-  color: #b4b4c2;
+  color: #1c1e1f;
 `;
 
 const Distance = styled.h4`
   font-size: 12px;
   line-height: 18px;
-  color: #f6f8fa;
+  color: #1c1e1f;
   font-weight: 500;
   margin-top: auto;
 `;
@@ -100,7 +96,7 @@ const Button = styled.button`
   margin-top: 16px;
   width: 100%;
   height: 56px;
-  background-color: #5e66ff;
+  background-color: #27c384;
   color: #f6f8fa;
   font-size: 16px;
   border-radius: 10px;
@@ -109,7 +105,7 @@ const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #4950d4;
+    background-color: #007d4b;
   }
 `;
 
