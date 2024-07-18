@@ -11,7 +11,7 @@ import NavigationMap from "../components/NavigationMap";
 import ic_cctv from "../assets/sodam/ic/ic_cctv.png";
 import something from "../assets/sodam/img/something.png";
 import close from "../assets/close.png";
-import map_marker from "../assets/icons/map_marker.png";
+import map_marker from "../assets/sodam/map_marker.png";
 import CloseModal from "../components/CloseModal";
 import ReviewModal from "../components/ReviewModal";
 import Spinner from "../components/Spinner";
@@ -130,13 +130,13 @@ const WhiteText = styled.span`
   font-size: 16px;
   line-height: 24px;
   margin-right: 6px;
-  color: #f6f8fa;
+  color: #1c1e1f;
 `;
 
 const GrayText = styled.span`
   font-size: 16px;
   line-height: 24px;
-  color: #91919c;
+  color: #797982;
 `;
 
 function decimalHoursToTime(decimalHours) {
@@ -215,7 +215,7 @@ const Navigation = () => {
   };
 
   return (
-    <HomeWrapper className="PathDetail">
+    <>
       {finishModalOpen && <CloseModal onClose={closeModal} />}
       {reviewModalOpen && (
         <ReviewModal
@@ -226,104 +226,110 @@ const Navigation = () => {
           destinationLongitude={endLongitude}
         />
       )}
+      <HomeWrapper className="PathDetail">
+        {!isStarted ? (
+          <Header>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginRight: "10px",
+              }}
+            >
+              <img src={something} style={{ width: "16px", height: "57px" }} />
+            </div>
+            <LocationWrap>
+              <Location>{currentLocation}</Location>
+              <Location>{typedText}</Location>
+            </LocationWrap>
+            <div>
+              <img
+                src={close}
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  paddingLeft: "10px",
+                  paddingTop: "9px",
+                  paddingBottom: "10px",
+                  cursor: "pointer",
+                }}
+                onClick={() => navigate(-1)}
+              />
+            </div>
+          </Header>
+        ) : (
+          <Header style={{ justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={map_marker}
+                style={{ width: "24px", height: "24px", marginRight: "6px" }}
+              />
+              <WhiteText>{typedText}</WhiteText>{" "}
+              <GrayText> 가는 중...</GrayText>
+            </div>
 
-      {!isStarted ? (
-        <Header>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "10px",
-            }}
-          >
-            <img src={something} style={{ width: "16px", height: "57px" }} />
-          </div>
-          <LocationWrap>
-            <Location>{currentLocation}</Location>
-            <Location>{typedText}</Location>
-          </LocationWrap>
-          <div>
             <img
               src={close}
               style={{
-                width: "20px",
-                height: "20px",
-                paddingLeft: "10px",
-                paddingTop: "9px",
-                paddingBottom: "10px",
+                width: "24px",
+                height: "24px",
                 cursor: "pointer",
               }}
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                setFinishModalOpen(true);
+              }}
             />
-          </div>
-        </Header>
-      ) : (
-        <Header style={{ justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={map_marker}
-              style={{ width: "24px", height: "24px", marginRight: "6px" }}
+          </Header>
+        )}
+
+        <MapContainer>
+          {loading ? <Spinner size="md" theme="dark" /> : null}
+          {!loading && fetchedData.latitudeList && fetchedData.longitudeList ? (
+            <NavigationMap
+              latitudeList={fetchedData.latitudeList}
+              longitudeList={fetchedData.longitudeList}
+              safetyLatitudeList={fetchedData.safetyLatitudeList}
+              safetyLongitudeList={fetchedData.safetyLongitudeList}
+              safetyTypeList={fetchedData.safetyTypeList}
             />
-            <WhiteText>{typedText}</WhiteText> <GrayText> 가는 중...</GrayText>
-          </div>
+          ) : null}
+        </MapContainer>
+        {!isStarted ? (
+          <Wrap>
+            <Info>
+              <PurpleText>안전한 거리</PurpleText>
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "7px",
+                  marginBottom: "7px",
+                }}
+              >
+                <Time>{decimalHoursToTime(fetchedData.time)} </Time>
+                <Distance>{fetchedData.distance} km</Distance>
+              </div>
 
-          <img
-            src={close}
-            style={{
-              width: "24px",
-              height: "24px",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              setFinishModalOpen(true);
-            }}
-          />
-        </Header>
-      )}
-
-      <MapContainer>
-        {loading ? <Spinner size="md" theme="dark" /> : null}
-        {!loading && fetchedData.latitudeList && fetchedData.longitudeList ? (
-          <NavigationMap
-            latitudeList={fetchedData.latitudeList}
-            longitudeList={fetchedData.longitudeList}
-            safetyLatitudeList={fetchedData.safetyLatitudeList}
-            safetyLongitudeList={fetchedData.safetyLongitudeList}
-            safetyTypeList={fetchedData.safetyTypeList}
-          />
-        ) : null}
-      </MapContainer>
-      {!isStarted ? (
-        <Wrap>
-          <Info>
-            <PurpleText>안전한 거리</PurpleText>
-            <div
-              style={{ display: "flex", marginTop: "7px", marginBottom: "7px" }}
-            >
-              <Time>{decimalHoursToTime(fetchedData.time)} </Time>
-              <Distance>{fetchedData.distance} km</Distance>
-            </div>
-
-            <div style={{ display: "flex", alignItems: "center" }}>
-              {fetchedData.safetyLatitudeList && (
-                <CCTVnumber>
-                  <img src={ic_cctv} style={{ marginRight: "6px" }} />
-                  CCTV {fetchedData.safetyLatitudeList.length}대
-                </CCTVnumber>
-              )}
-            </div>
-          </Info>
-          <Button onClick={() => setIsStarted(true)}>출발하기</Button>
-        </Wrap>
-      ) : (
-        <Wrap>
-          <Button onClick={() => setReviewModalOpen(true)}>
-            도착 완료하기
-          </Button>
-        </Wrap>
-      )}
-    </HomeWrapper>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {fetchedData.safetyLatitudeList && (
+                  <CCTVnumber>
+                    <img src={ic_cctv} style={{ marginRight: "6px" }} />
+                    CCTV {fetchedData.safetyLatitudeList.length}대
+                  </CCTVnumber>
+                )}
+              </div>
+            </Info>
+            <Button onClick={() => setIsStarted(true)}>출발하기</Button>
+          </Wrap>
+        ) : (
+          <Wrap>
+            <Button onClick={() => setReviewModalOpen(true)}>
+              도착 완료하기
+            </Button>
+          </Wrap>
+        )}
+      </HomeWrapper>
+    </>
   );
 };
 

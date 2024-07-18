@@ -25,7 +25,7 @@ const CloseWrap = styled.div`
   flex-direction: column;
   width: 280px;
   height: 150px;
-  background-color: #333344;
+  background-color: #ffffff;
   padding: 24px 20px 16px 20px;
   border-radius: 16px;
   justify-content: space-around;
@@ -63,16 +63,16 @@ const CloseModal = ({ onClose }) => {
     <CloseModalContainer onClick={onClose}>
       <CloseWrap onClick={(e) => e.stopPropagation()}>
         <div style={{ textAlign: "center" }}>
-          <Text style={{ color: "#F6F8FA", fontSize: "16px" }}>
+          <Text style={{ color: "#1C1E1F", fontSize: "16px" }}>
             실시간 이동을 종료할까요?
           </Text>
-          <Text style={{ color: "#B4B4C2", fontSize: "12px" }}>
+          <Text style={{ color: "#797982", fontSize: "12px" }}>
             지금 나가면 기록이 저장되지 않아요
           </Text>
         </div>
         <BtnWrap>
           <ModalBtn
-            style={{ backgroundColor: "#5A5A76" }}
+            style={{ backgroundColor: "#DFDFF1" }}
             onClick={() => {
               onClose();
             }}
@@ -80,7 +80,7 @@ const CloseModal = ({ onClose }) => {
             닫기
           </ModalBtn>
           <ModalBtn
-            style={{ backgroundColor: "#5E66FF" }}
+            style={{ backgroundColor: "#27C384" }}
             onClick={() => {
               navigate("/search");
             }}

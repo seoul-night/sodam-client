@@ -25,7 +25,7 @@ const ReviewModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 320px;
-  background-color: #333344;
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 20px;
   display: flex;
@@ -93,7 +93,7 @@ const ReviewModal = ({
         <Wrapper style={{ textAlign: "center", justifySelf: "flex-start" }}>
           <Text
             style={{
-              color: "#F6F8FA",
+              color: "#1C1E1F",
               fontSize: "18px",
               marginBottom: "10px",
             }}
@@ -103,67 +103,27 @@ const ReviewModal = ({
           <Text
             style={{
               fontSize: "14px",
-              color: "#B4B4C2",
+              color: "#797982",
               lineHeight: "24px",
+              marginBottom: "14px",
             }}
           >
-            한 줄 리뷰를 작성해 보세요
-          </Text>
-          <Text
-            style={{
-              fontSize: "14px",
-              color: "#B4B4C2",
-              lineHeight: "24px",
-            }}
-          >
-            나의 발자취를 되돌아 볼 수 있어요
+            소담소담은 당신의 건강을 응원합니다
           </Text>
         </Wrapper>
-        <TextArea
-          placeholder="60자 이내로 작성할 수 있어요"
-          value={reviewText}
-          onChange={(event) => {
-            setReviewText(event.target.value);
-          }}
-        ></TextArea>
+
         <ModalBtn
           onClick={() => {
-            console.log(
-              "전송 데이터 : ",
-              userId,
-              reviewText,
-              destinationLatitude,
-              destinationLongitude,
-              destinationName
-            );
-            writeDestinationReview(
-              userId,
-              reviewText,
-              destinationLatitude,
-              destinationLongitude,
-              destinationName
-            );
             navigate("/home");
           }}
           style={{
-            backgroundColor: "#5E66FF",
+            backgroundColor: "#27C384",
             padding: "16px",
             width: "100%",
           }}
         >
-          리뷰 작성 완료
+          홈으로
         </ModalBtn>
-        <Link to="/home">
-          <Text
-            style={{
-              color: "#B4B4C2",
-              fontSize: "12px",
-              textDecoration: "underline ",
-            }}
-          >
-            나중에 할래요
-          </Text>
-        </Link>
       </ReviewModalContainer>
     </ModalBackground>
   );
