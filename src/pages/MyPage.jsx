@@ -264,7 +264,7 @@ const MyPage = () => {
             /> */}
             <img src={friends} />
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Text style={{ fontSize: "14px" }}>완료한 코스</Text>
+              <Text style={{ fontSize: "14px" }}> 등록한 친구</Text>
               <Badge
                 style={{
                   fontSize: "14px",
@@ -293,7 +293,7 @@ const MyPage = () => {
           >
             <img src={place} />
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Text style={{ fontSize: "14px" }}>찜한 코스</Text>
+              <Text style={{ fontSize: "14px" }}>등록한 장소</Text>
               <Badge
                 style={{
                   fontSize: "14px",
