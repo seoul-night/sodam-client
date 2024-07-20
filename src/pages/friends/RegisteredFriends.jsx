@@ -13,6 +13,7 @@ const HomeWrapper = styled.div`
   overflow: hidden;
   position: relative;
   padding: 20px;
+  /* padding-top: 0px; */
   box-sizing: border-box;
 `;
 
@@ -46,6 +47,7 @@ const GrayText = styled(BlackText)`
   color: #91919c;
   font-weight: 400;
   display: inline;
+  cursor: pointer;
 `;
 
 const Wrapper = styled.div`
@@ -85,7 +87,6 @@ const RegisteredFriends = () => {
   const navigate = useNavigate();
   return (
     <HomeWrapper className="All">
-      RegisteredFriends
       <Header headerText={"등록한 친구"} icon={friends} />
       <BlackText>친구 등록하기</BlackText>
       <SearchBar onClick={() => navigate("/searchFriends")}>
@@ -97,7 +98,7 @@ const RegisteredFriends = () => {
           <BlackText style={{ display: "inline" }}>친구 목록</BlackText>
           <GreenText>n</GreenText>
         </div>
-        <GrayText>편집</GrayText>
+        <GrayText onClick={() => navigate("/deleteFriend")}>편집</GrayText>
       </Wrapper>
       <FriendsUl>
         <FreindsLi>

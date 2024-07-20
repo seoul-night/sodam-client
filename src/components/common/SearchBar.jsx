@@ -12,6 +12,6 @@ const SearchBar = styled.div`
   box-sizing: border-box;
   padding: 8px 10px 8px 10px;
   margin-left: 30px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
   background-color: #ebeef1;
 `;

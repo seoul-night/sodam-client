@@ -1,5 +1,4 @@
 import React from "react";
-import chevronLeft from "../assets/icons/chevronLeft.png";
 import styled from "styled-components";
 
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";

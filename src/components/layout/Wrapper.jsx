@@ -11,7 +11,7 @@ const HomeWrapper = styled.div`
 `;
 
 const Wrapper = () => {
-  return <HomeWrapper className="All">Wrapper</HomeWrapper>;
+  return <HomeWrapper className="All"></HomeWrapper>;
 };
 
 export default Wrapper;

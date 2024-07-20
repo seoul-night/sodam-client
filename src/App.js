@@ -23,6 +23,7 @@ import ChatBot from "./pages/ChatBot.jsx";
 import RegisteredFriends from "./pages/friends/RegisteredFriends.jsx";
 import RegisteredPlaces from "./pages/places/RegisteredPlaces.jsx";
 import SearchFriends from "./pages/friends/SearchFriend.jsx";
+import DeleteFriend from "./pages/friends/DeleteFriend.jsx";
 
 function App() {
   // APp.js 렌더링시 뷰포트 높이 계산 함수
@@ -147,6 +148,7 @@ function App() {
         <Route path="/friends" element={<RegisteredFriends />}></Route>
         <Route path="/searchFriends" element={<SearchFriends />} />
         <Route path="/savedplaces" element={<RegisteredPlaces />} />
+        <Route path="/deleteFriend" element={<DeleteFriend />} />
       </Routes>
     </div>
   );
