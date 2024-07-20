@@ -80,7 +80,7 @@ const TextWrap = styled.div`
 `;
 
 const GrayText = styled.span`
-  color: #1c1e1f;
+  color: #91919c;
   font-size: 14px;
 `;
 

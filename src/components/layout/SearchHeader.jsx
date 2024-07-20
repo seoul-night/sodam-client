@@ -55,7 +55,13 @@ const SubmitBtn = styled.button`
   cursor: pointer;
 `;
 
-const SearchHeader = ({ headerText, icon }) => {
+const SearchHeader = ({
+  headerText,
+  icon,
+  inputPH,
+  handleInputChange,
+  inputValue,
+}) => {
   const navigate = useNavigate();
   return (
     <Head>
@@ -70,7 +76,11 @@ const SearchHeader = ({ headerText, icon }) => {
       </Link>
       <Text>{headerText}</Text>
       <SearchForm>
-        <SearchInput placeholder="친구의 카카오 이메일 입력" />
+        <SearchInput
+          placeholder={inputPH}
+          onChange={handleInputChange}
+          value={inputValue}
+        />
         <SubmitBtn type="submit">검색</SubmitBtn>
       </SearchForm>
     </Head>

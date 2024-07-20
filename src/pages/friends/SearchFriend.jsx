@@ -1,6 +1,4 @@
 import React from "react";
-
-import Wrapper from "../../components/layout/Wrapper";
 import SearchHeader from "../../components/layout/SearchHeader";
 import styled from "styled-components";
 import homeback from "../../assets/homeback.png";
@@ -53,7 +51,7 @@ const SearchFriend = () => {
   return (
     <HomeWrapper className="All">
       {/* <DeleteModal ModalText={"친구를 정말 삭제할까요?"} /> */}
-      <SearchHeader />
+      <SearchHeader inputPH={"친구의 카카오 이메일 입력"} />
 
       <SearchedPerson>
         <PersonImg src={homeback} />
