@@ -25,6 +25,8 @@ import RegisteredPlaces from "./pages/places/RegisteredPlaces.jsx";
 import SearchFriends from "./pages/friends/SearchFriend.jsx";
 import DeleteFriend from "./pages/friends/DeleteFriend.jsx";
 import SearchPlace from "./pages/places/SearchPlace.jsx";
+import CheckLocation from "./pages/places/CheckLocation.jsx";
+import SetPlaceName from "./pages/places/SetPlaceName.jsx";
 
 function App() {
   // APp.js 렌더링시 뷰포트 높이 계산 함수
@@ -157,6 +159,8 @@ function App() {
         <Route path="/locatePlace" element={<RegisteredPlaces />} />
         <Route path="/deletePlace" element={<RegisteredPlaces />} />
         <Route path="/deletePlace" element={<RegisteredPlaces />} />
+        <Route path="/checkLocation" element={<CheckLocation />} />
+        <Route path="/setPlaceName" element={<SetPlaceName />} />
       </Routes>
     </div>
   );

@@ -61,6 +61,7 @@ const SearchHeader = ({
   inputPH,
   handleInputChange,
   inputValue,
+  navigateTo,
 }) => {
   const navigate = useNavigate();
   return (
@@ -75,7 +76,12 @@ const SearchHeader = ({
         />
       </Link>
       <Text>{headerText}</Text>
-      <SearchForm>
+      <SearchForm
+        onSubmit={(event) => {
+          event.preventDefault();
+          navigate(`/${navigateTo}`);
+        }}
+      >
         <SearchInput
           placeholder={inputPH}
           onChange={handleInputChange}

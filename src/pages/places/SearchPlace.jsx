@@ -110,9 +110,6 @@ const SearchPlace = () => {
     setTypedText(event.target.value);
   };
 
-  const handleKeywordClick = (clickedKeyword) => {
-    setTypedText(clickedKeyword);
-  };
   /*
   1. 인풋에 장소 입력
   2. 입력한 텍스트를 typedText로 설정
@@ -144,6 +141,7 @@ const SearchPlace = () => {
         inputPH={"등록하고 싶은 장소 검색"}
         handleInputChange={handleInputChange}
         inputValue={typedText}
+        navigateTo={"checkLocation"}
       />
 
       {typedText !== "" ? (
