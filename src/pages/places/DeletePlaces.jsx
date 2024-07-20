@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import place from "../../assets/sodam/ic/place.png";
-import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import homeback from "../../assets/homeback.png";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import vector from "../../assets/sodam/ic/Vector.png";
+import DeleteModal from "../../components/common/DeleteModal";
+
 const HomeWrapper = styled.div`
   height: 100vh;
   background-color: #ffffff;
@@ -13,20 +14,6 @@ const HomeWrapper = styled.div`
   position: relative;
   padding: 20px;
   box-sizing: border-box;
-`;
-
-const SearchBar = styled.div`
-  font-size: 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  color: #91919c;
-  box-sizing: border-box;
-  padding: 8px 10px 8px 10px;
-  background-color: #ebeef1;
 `;
 
 const BlackText = styled.h1`
@@ -52,7 +39,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px;
   margin-bottom: 10px;
 `;
 
@@ -81,22 +67,30 @@ const PlaceLocation = styled.span`
   color: #91919c;
 `;
 
-const RegisteredPlaces = () => {
+const DeletePlaces = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <HomeWrapper className="All">
-      <Header headerText={"등록한 장소"} icon={place} />
-      <BlackText>장소 등록하기</BlackText>
-      <SearchBar onClick={() => navigate("/searchPlace")}>
-        <FontAwesomeIcon icon={faSearch} style={{ marginRight: "8px" }} />
-        등록하고 싶은 장소 검색
-      </SearchBar>
+      {isModalOpen && (
+        <DeleteModal
+          ModalText={"친구를 정말 삭제할까요?"}
+          navigateTo={"/savedPlaces"}
+          onClose={closeModal}
+        />
+      )}
+      <Header></Header>
       <Wrapper>
         <div>
           <BlackText style={{ display: "inline" }}>장소 목록</BlackText>
           <GreenText>n</GreenText>
         </div>
-        <GrayText onClick={() => navigate("/deletePlaces")}>편집</GrayText>
       </Wrapper>
       <PlacesUl>
         <PlacesLi>
@@ -104,9 +98,13 @@ const RegisteredPlaces = () => {
             <PlaceName>부모님 집</PlaceName>
             <PlaceLocation>경기도 부천시 ~~</PlaceLocation>
           </div>
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            style={{ marginRight: "8px", color: "#91919C" }}
+
+          <img
+            src={vector}
+            style={{ width: "24px", height: "24px" }}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
           />
         </PlacesLi>
       </PlacesUl>
@@ -114,4 +112,4 @@ const RegisteredPlaces = () => {
   );
 };
 
-export default RegisteredPlaces;
+export default DeletePlaces;

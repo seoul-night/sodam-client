@@ -18,7 +18,7 @@ import Navigation from "./pages/Navigation.jsx";
 import Search from "./pages/Search.jsx";
 import PrivateRoute from "./auth/PrivateRoute.jsx";
 import NavigateToPopular from "./pages/NavigateToPopular.jsx";
-import SavedPlaces from "./pages/places/SavedPlaces.jsx";
+// import SavedPlaces from "./pages/places/SavedPlaces.jsx";
 import ChatBot from "./pages/ChatBot.jsx";
 import RegisteredFriends from "./pages/friends/RegisteredFriends.jsx";
 import RegisteredPlaces from "./pages/places/RegisteredPlaces.jsx";
@@ -27,6 +27,7 @@ import DeleteFriend from "./pages/friends/DeleteFriend.jsx";
 import SearchPlace from "./pages/places/SearchPlace.jsx";
 import CheckLocation from "./pages/places/CheckLocation.jsx";
 import SetPlaceName from "./pages/places/SetPlaceName.jsx";
+import DeletePlaces from "./pages/places/DeletePlaces.jsx";
 
 function App() {
   // APp.js 렌더링시 뷰포트 높이 계산 함수
@@ -161,6 +162,7 @@ function App() {
         <Route path="/deletePlace" element={<RegisteredPlaces />} />
         <Route path="/checkLocation" element={<CheckLocation />} />
         <Route path="/setPlaceName" element={<SetPlaceName />} />
+        <Route path="/deletePlaces" element={<DeletePlaces />} />
       </Routes>
     </div>
   );
