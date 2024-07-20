@@ -18,8 +18,11 @@ import Navigation from "./pages/Navigation.jsx";
 import Search from "./pages/Search.jsx";
 import PrivateRoute from "./auth/PrivateRoute.jsx";
 import NavigateToPopular from "./pages/NavigateToPopular.jsx";
-import SavedPlaces from "./pages/SavedPlaces.jsx";
+import SavedPlaces from "./pages/places/SavedPlaces.jsx";
 import ChatBot from "./pages/ChatBot.jsx";
+import RegisteredFriends from "./pages/friends/RegisteredFriends.jsx";
+import RegisteredPlaces from "./pages/places/RegisteredPlaces.jsx";
+import SearchFriends from "./pages/friends/SearchFriend.jsx";
 
 function App() {
   // APp.js 렌더링시 뷰포트 높이 계산 함수
@@ -140,8 +143,10 @@ function App() {
             </PrivateRoute>
           }
         ></Route>
-        <Route path="/savedplaces" element={<SavedPlaces />} />
         <Route path="/chatbot" element={<ChatBot />} />
+        <Route path="/friends" element={<RegisteredFriends />}></Route>
+        <Route path="/searchFriends" element={<SearchFriends />} />
+        <Route path="/savedplaces" element={<RegisteredPlaces />} />
       </Routes>
     </div>
   );

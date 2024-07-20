@@ -18,13 +18,13 @@ const Head = styled.div`
   padding-top: 20px;
   margin-top: -20px;
   position: sticky;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   /* top: 0; */
   /* background-color: gray; */
   gap: 3px;
 `;
 const Text = styled.span`
-  color: #f6f8fa;
+  color: #1c1e1f;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -37,14 +37,14 @@ const Header = ({ headerText, icon }) => {
       <Link style={{ height: "24px", display: "flex", alignItems: "center" }}>
         <FontAwesomeIcon
           icon={faChevronLeft}
-          style={{ color: "#F6F8FA", paddingRight: "15px" }}
+          style={{ color: "#1c1e1f", paddingRight: "15px" }}
           onClick={() => {
             navigate(-1);
           }}
         />
       </Link>
       <Text>{headerText}</Text>
-      <img src={icon} />
+      <img src={icon} style={{ width: "18px" }} />
     </Head>
   );
 };

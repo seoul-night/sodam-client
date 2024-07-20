@@ -255,7 +255,7 @@ const MyPage = () => {
               height: "96px",
             }}
             onClick={() => {
-              navigate("/finished");
+              navigate("/friends");
             }}
           >
             {/* <FontAwesomeIcon
@@ -288,7 +288,7 @@ const MyPage = () => {
               height: "96px",
             }}
             onClick={() => {
-              navigate("/liked");
+              navigate("/savedplaces");
             }}
           >
             <img src={place} />

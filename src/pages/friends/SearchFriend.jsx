@@ -1,7 +1,9 @@
 import React from "react";
 
+import Wrapper from "../../components/layout/Wrapper";
+
 const SearchFriend = () => {
-  return <div>SearchFriend</div>;
+  return <Wrapper>SearchFriend</Wrapper>;
 };
 
 export default SearchFriend;
