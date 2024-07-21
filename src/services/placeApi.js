@@ -28,7 +28,13 @@ export const getSavedPlaces = async (userId) => {
 };
 
 //장소 등록
-export const postPlace = async (userId, latitude, longitude, name, address) => {
+export const postPlace = async ({
+  userId,
+  latitude,
+  longitude,
+  name,
+  address,
+}) => {
   const data = {
     userId,
     latitude,
@@ -37,14 +43,14 @@ export const postPlace = async (userId, latitude, longitude, name, address) => {
     address,
   };
   try {
-    const response = await axios.post(`${BASE_URL}/members/locations`, data, {
+    console.log(data);
+    await axios.post(`${BASE_URL}/members/locations`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
-    console.log("장소 등록 : ", response);
-    return response.json();
+    console.log("장소 등록 성공");
   } catch (error) {
     console.log("장소 등록 에러 : ", error);
     throw error;

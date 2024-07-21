@@ -18,7 +18,7 @@ import Spinner from "../components/Spinner";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
@@ -115,7 +115,7 @@ const MapContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   touch-action: pan-x pan-y;
 `;
 
@@ -284,7 +284,7 @@ const Navigation = () => {
         )}
 
         <MapContainer>
-          {loading ? <Spinner size="md" theme="dark" /> : null}
+          {loading ? <Spinner size="md" theme="light" /> : null}
           {!loading && fetchedData.latitudeList && fetchedData.longitudeList ? (
             <NavigationMap
               latitudeList={fetchedData.latitudeList}

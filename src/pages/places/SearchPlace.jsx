@@ -4,6 +4,7 @@ import styled from "styled-components";
 import homeback from "../../assets/homeback.png";
 import DeleteModal from "../../components/common/DeleteModal";
 import { keywordSearch } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -101,6 +102,7 @@ const WhiteText = styled.span`
 const SearchPlace = () => {
   const [typedText, setTypedText] = useState("");
   const [keywordList, setKeywordList] = useState([]);
+  const navigate = useNavigate();
 
   const placeClick = (name) => {
     setTypedText(name);
@@ -108,6 +110,25 @@ const SearchPlace = () => {
 
   const handleInputChange = (event) => {
     setTypedText(event.target.value);
+  };
+
+  const handleFormSubmit = () => {
+    const place = keywordList.find((place) => place.place_name === typedText);
+
+    if (place) {
+      /*
+       장소 위도, 경도, 주소이름 전송
+        페이지 이동
+       */
+      navigate("/checkLocation", {
+        state: {
+          address_name: place.address_name,
+          road_address_name: place.road_address_name,
+          y: place.y,
+          x: place.x,
+        },
+      });
+    }
   };
 
   /*
@@ -142,6 +163,7 @@ const SearchPlace = () => {
         handleInputChange={handleInputChange}
         inputValue={typedText}
         navigateTo={"checkLocation"}
+        handleFormSubmit={handleFormSubmit}
       />
 
       {typedText !== "" ? (

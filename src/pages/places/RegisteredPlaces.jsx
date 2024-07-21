@@ -114,7 +114,7 @@ const RegisteredPlaces = () => {
       </Wrapper>
       {isLoading && <Spinner />}
       <PlacesUl>
-        <PlacesLi>
+        {/* <PlacesLi>
           <div>
             <PlaceName>부모님 집</PlaceName>
             <PlaceLocation>경기도 부천시 ~~</PlaceLocation>
@@ -123,7 +123,21 @@ const RegisteredPlaces = () => {
             icon={faChevronRight}
             style={{ marginRight: "8px", color: "#91919C" }}
           />
-        </PlacesLi>
+        </PlacesLi> */}
+        {data.map((place, i) => {
+          return (
+            <PlacesLi>
+              <div>
+                <PlaceName>{place.name}</PlaceName>
+                <PlaceLocation>{place.address}</PlaceLocation>
+              </div>
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{ marginRight: "8px", color: "#91919C" }}
+              />
+            </PlacesLi>
+          );
+        })}
       </PlacesUl>
     </HomeWrapper>
   );

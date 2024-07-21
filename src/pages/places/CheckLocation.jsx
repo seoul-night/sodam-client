@@ -3,7 +3,7 @@ import NavigationMap from "../../components/NavigationMap";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -87,6 +87,9 @@ const Button = styled.button`
 
 const CheckLocation = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { address_name, road_address_name, y, x } = location.state || {};
+
   return (
     <HomeWrapper className="All">
       <Header>
@@ -99,7 +102,7 @@ const CheckLocation = () => {
         />
       </Header>
       <MapContainer>
-        <NavigationMap lat={37.545} lng={127.0684} />
+        <NavigationMap lat={y} lng={x} />
       </MapContainer>
 
       <Wrap>
@@ -108,22 +111,20 @@ const CheckLocation = () => {
           <div
             style={{ display: "flex", marginTop: "7px", marginBottom: "7px" }}
           >
-            {/* <Distance>{fetchedData.distance} km</Distance> */}
-            <LocationText>서울 어딘가</LocationText>
+            <LocationText>{road_address_name}</LocationText>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {/* {fetchedData.safetyLatitudeList && (
-              <CCTVnumber>
-                <img src={ic_cctv} style={{ marginRight: "6px" }} />
-                CCTV {fetchedData.safetyLatitudeList.length}대
-              </CCTVnumber>
-            )} */}
-          </div>
+          <div style={{ display: "flex", alignItems: "center" }}></div>
         </Info>
         <Button
           onClick={() => {
-            navigate("/setPlaceName");
+            navigate("/setPlaceName", {
+              state: {
+                y,
+                x,
+                road_address_name,
+              },
+            });
           }}
         >
           이 위치 선택하기

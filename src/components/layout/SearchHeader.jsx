@@ -1,7 +1,7 @@
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Head = styled.div`
@@ -61,9 +61,19 @@ const SearchHeader = ({
   inputPH,
   handleInputChange,
   inputValue,
-  navigateTo,
+  handleFormSubmit,
 }) => {
+  const [state, setState] = useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname == "/searchPlace") {
+      setState();
+    } else if (location.pathname == "/searchFriends") {
+    }
+  }, []);
+
   return (
     <Head>
       <Link style={{ height: "24px", display: "flex", alignItems: "center" }}>
@@ -71,7 +81,9 @@ const SearchHeader = ({
           icon={faChevronLeft}
           style={{ color: "#1c1e1f", paddingRight: "15px" }}
           onClick={() => {
-            navigate(-1);
+            navigate(-1, {
+              state: {},
+            });
           }}
         />
       </Link>
@@ -79,7 +91,7 @@ const SearchHeader = ({
       <SearchForm
         onSubmit={(event) => {
           event.preventDefault();
-          navigate(`/${navigateTo}`);
+          handleFormSubmit();
         }}
       >
         <SearchInput

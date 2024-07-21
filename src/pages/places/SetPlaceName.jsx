@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
+import { postPlace } from "../../services/placeApi";
+import { useMutation, useQueryClient } from "react-query";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -49,6 +53,39 @@ const Button = styled.button`
 const SetPlaceName = () => {
   const [typedText, setTypedText] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = useRecoilValue(userIdState);
+  const queryClient = useQueryClient();
+
+  const { y, x, road_address_name } = location.state || {};
+
+  const mutation = useMutation(postPlace, {
+    onSuccess: () => {
+      console.log("위치 등록 성공");
+      queryClient.invalidateQueries(["savedPlaces", userId]); //위치 등록 후 데이터 최신 상태로 갱신
+      navigate("/savedPlaces");
+    },
+    onError: () => {
+      console.log("등록 에러");
+    },
+  });
+
+  const mutateData = {
+    userId,
+    latitude: parseFloat(y),
+    longitude: parseFloat(x),
+    name: typedText,
+    address: road_address_name,
+  };
+
+  useEffect(() => {
+    console.log("Location state:", location.state.road_address_name);
+    console.log("UserId:", userId);
+  }, [location.state, userId]);
+
+  useEffect(() => {
+    console.log(typedText);
+  }, [typedText]);
 
   return (
     <HomeWrapper className="All">
@@ -58,12 +95,13 @@ const SetPlaceName = () => {
         placeholder="예) 집, 학교"
         onChange={(event) => {
           setTypedText(event.target.value);
+          // console.log(typedText);
         }}
       />
       <Button
         disabled={typedText === ""}
         onClick={() => {
-          navigate("/savedPlaces");
+          mutation.mutate(mutateData);
         }}
       >
         장소 등록 완료

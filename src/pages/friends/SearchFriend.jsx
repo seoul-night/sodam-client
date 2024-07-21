@@ -50,6 +50,8 @@ const AddBtn = styled.button`
 
 const SearchFriend = () => {
   const navigate = useNavigate();
+
+  const handleFormSubmit = () => {};
   return (
     <HomeWrapper className="All">
       {/* <DeleteModal ModalText={"친구를 정말 삭제할까요?"} /> */}
