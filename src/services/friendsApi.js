@@ -7,7 +7,6 @@ const token = localStorage.getItem("token");
 
 const APP_KEY = process.env.REACT_APP_APP_KEY;
 
-//
 export const addFriend = async ({ userId, searchId }) => {
   try {
     const data = { userId, searchId };
@@ -17,6 +16,7 @@ export const addFriend = async ({ userId, searchId }) => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       }
     );

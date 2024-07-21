@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import place from "../../assets/sodam/ic/place.png";
@@ -83,6 +83,10 @@ const PlaceLocation = styled.span`
 
 const RegisteredPlaces = () => {
   const navigate = useNavigate();
+  const [savedPlaces, setSavedPlaces] = useState([]);
+
+  useEffect(() => {}, []);
+
   return (
     <HomeWrapper className="All">
       <Header headerText={"등록한 장소"} icon={place} />
