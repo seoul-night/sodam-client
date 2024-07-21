@@ -1,17 +1,16 @@
 // src/utils/http-commons.js
 import axios from "axios";
 
-const BASE_URL = "https://ddubam.site/api";
+const BASE_URL = "https://sodamsodam.site/api";
 // const BASE_URL = "http://localhost:8080/api";
-
 
 // 경로 예외 목록
 const excludedPaths = [
-    "/members/kakao/login",
-    "/members/kakao/oauth",
-    "/members/kakao/login/test",
-    "/members/kakao/oauth/test",
-  ];
+  "/members/kakao/login",
+  "/members/kakao/oauth",
+  "/members/kakao/login/test",
+  "/members/kakao/oauth/test",
+];
 
 // local axios instance
 function ddubamAxios(path) {
@@ -27,16 +26,17 @@ function ddubamAxios(path) {
   // request interceptor
   instance.interceptors.request.use(
     (config) => {
+      // 제외할 경로에 대한 헤더 제거
+      const isExcludedPath = excludedPaths.some((excludedPath) =>
+        config.url.includes(excludedPath)
+      );
 
-        // 제외할 경로에 대한 헤더 제거
-      const isExcludedPath = excludedPaths.some(excludedPath => config.url.includes(excludedPath));
-
-      if(!isExcludedPath){
+      if (!isExcludedPath) {
         // 토큰 설정
         let auth = localStorage.getItem("token");
 
         if (auth) {
-            config.headers.Authorization = `Bearer ${auth}`;
+          config.headers.Authorization = `Bearer ${auth}`;
         }
       }
 

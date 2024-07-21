@@ -9,7 +9,6 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import logo2 from "../assets/logo2.png";
 import like from "../assets/icons/like.png";
 import complete from "../assets/icons/complete.png";
 import home from "../assets/icons/home.png";
@@ -27,6 +26,7 @@ import {
 import { jwtDecode } from "jwt-decode";
 import place from "../assets/sodam/ic/place.png";
 import friends from "../assets/sodam/ic/friends.png";
+import logo from "../assets/sodam/img/logo.png";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -183,7 +183,7 @@ const MyPage = () => {
   return (
     <HomeWrapper className="MyPage">
       <LogoWrap>
-        <img src={logo2} style={{ height: "24px" }} />
+        <img src={logo} style={{ height: "24px" }} />
       </LogoWrap>
       <Wrap>
         <ProfileWrap>

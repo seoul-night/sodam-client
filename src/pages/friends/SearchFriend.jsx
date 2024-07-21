@@ -3,6 +3,7 @@ import SearchHeader from "../../components/layout/SearchHeader";
 import styled from "styled-components";
 import homeback from "../../assets/homeback.png";
 import DeleteModal from "../../components/common/DeleteModal";
+import { useNavigate } from "react-router-dom";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -48,6 +49,7 @@ const AddBtn = styled.button`
 `;
 
 const SearchFriend = () => {
+  const navigate = useNavigate();
   return (
     <HomeWrapper className="All">
       {/* <DeleteModal ModalText={"친구를 정말 삭제할까요?"} /> */}
@@ -56,7 +58,7 @@ const SearchFriend = () => {
       <SearchedPerson>
         <PersonImg src={homeback} />
         <PersonName>adsf</PersonName>
-        <AddBtn>추가하기</AddBtn>
+        <AddBtn onClick={() => navigate("/friends")}>추가하기</AddBtn>
       </SearchedPerson>
     </HomeWrapper>
   );
