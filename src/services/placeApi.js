@@ -66,3 +66,40 @@ export const deletePlace = async (id) => {
     throw error;
   }
 };
+
+//위치 데이터 저장, response 없음
+const saveLocation = async ({ userId, latitude, longitude }) => {
+  try {
+    const data = {
+      userId,
+      latitude,
+      longitude,
+    };
+    const response = await axios.post(`${BASE_URL}/family/locations`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log("위치 저장 에러 : ", error);
+    console.log(error);
+  }
+};
+
+//위치 데이터 조회
+const getLocationData = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/family/lcations/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("위치 데이터 조회 결과 : ", response);
+    return response.data();
+  } catch (error) {
+    console.log("위치 데이터 조회 에러 : ", error);
+    throw error;
+  }
+};
