@@ -56,7 +56,14 @@ const Text = styled.h4`
   /* margin-bottom: 5px; */
 `;
 
-const DeleteModal = ({ onClose, ModalText, modalFn, navigateTo }) => {
+const DeleteModal = ({
+  onClose,
+  ModalText,
+  modalFn,
+  navigateTo,
+  // deletePlace,
+  onDelete,
+}) => {
   const navigate = useNavigate();
   return (
     <CloseModalContainer
@@ -82,10 +89,12 @@ const DeleteModal = ({ onClose, ModalText, modalFn, navigateTo }) => {
           <ModalBtn
             style={{ backgroundColor: "#FF6C6C" }}
             onClick={() => {
+              // deletePlace();
+              onDelete();
               navigate(navigateTo);
             }}
           >
-            종료할게요
+            삭제할게요
           </ModalBtn>
         </BtnWrap>
       </CloseWrap>

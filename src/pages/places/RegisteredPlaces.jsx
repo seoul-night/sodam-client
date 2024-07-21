@@ -76,6 +76,7 @@ const PlacesLi = styled.li`
   box-sizing: border-box;
   padding: 12px 16px;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 const PlaceName = styled.h1`
@@ -124,9 +125,9 @@ const RegisteredPlaces = () => {
             style={{ marginRight: "8px", color: "#91919C" }}
           />
         </PlacesLi> */}
-        {data.map((place, i) => {
-          return (
-            <PlacesLi>
+        {data &&
+          data.map((place, i) => (
+            <PlacesLi key={i}>
               <div>
                 <PlaceName>{place.name}</PlaceName>
                 <PlaceLocation>{place.address}</PlaceLocation>
@@ -136,8 +137,7 @@ const RegisteredPlaces = () => {
                 style={{ marginRight: "8px", color: "#91919C" }}
               />
             </PlacesLi>
-          );
-        })}
+          ))}
       </PlacesUl>
     </HomeWrapper>
   );

@@ -6,6 +6,10 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import vector from "../../assets/sodam/ic/Vector.png";
 import DeleteModal from "../../components/common/DeleteModal";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
+import { deletePlace, getSavedPlaces } from "../../services/placeApi";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -56,6 +60,7 @@ const PlacesLi = styled.li`
   box-sizing: border-box;
   padding: 12px 16px;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 const PlaceName = styled.h1`
@@ -69,12 +74,37 @@ const PlaceLocation = styled.span`
 
 const DeletePlaces = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const userId = useRecoilValue(userIdState);
+  const queryClient = useQueryClient();
+
+  const { data, error, isLoading } = useQuery(["savedPlaces", userId], () => {
+    return getSavedPlaces(userId);
+    console.log(data);
+  });
 
   const navigate = useNavigate();
+
+  const mutation = useMutation(deletePlace, {
+    onSuccess: () => {
+      console.log("삭제 성공");
+      queryClient.invalidateQueries(["savedPlaces", userId]);
+      navigate("/savedPlaces");
+    },
+    onError: () => {
+      console.log("삭제 에러");
+    },
+  });
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleDelete = () => {
+    mutation.mutate(clickedId);
+    setIsModalOpen(false);
+  };
+
+  const [clickedId, setClickedId] = useState(0);
 
   return (
     <HomeWrapper className="All">
@@ -82,31 +112,39 @@ const DeletePlaces = () => {
         <DeleteModal
           ModalText={"친구를 정말 삭제할까요?"}
           navigateTo={"/savedPlaces"}
+          onDelete={handleDelete}
           onClose={closeModal}
+          // deletePlace={mutation.mutate(clickedId)}
         />
       )}
       <Header></Header>
       <Wrapper>
         <div>
           <BlackText style={{ display: "inline" }}>장소 목록</BlackText>
-          <GreenText>n</GreenText>
+          <GreenText>{data ? data.length : 0}</GreenText>
         </div>
       </Wrapper>
       <PlacesUl>
-        <PlacesLi>
-          <div>
-            <PlaceName>부모님 집</PlaceName>
-            <PlaceLocation>경기도 부천시 ~~</PlaceLocation>
-          </div>
-
-          <img
-            src={vector}
-            style={{ width: "24px", height: "24px" }}
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          />
-        </PlacesLi>
+        {data &&
+          data.map((place, i) => {
+            return (
+              <PlacesLi key={place.id}>
+                <div>
+                  <PlaceName>{place.name}</PlaceName>
+                  <PlaceLocation>{place.address}</PlaceLocation>
+                </div>
+                <img
+                  src={vector}
+                  style={{ width: "24px", height: "24px" }}
+                  onClick={() => {
+                    setClickedId(place.id);
+                    console.log(place.id);
+                    setIsModalOpen(true);
+                  }}
+                />
+              </PlacesLi>
+            );
+          })}
       </PlacesUl>
     </HomeWrapper>
   );
