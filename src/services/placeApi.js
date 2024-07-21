@@ -57,7 +57,7 @@ export const deletePlace = async (id) => {
     const response = await axios.delete(`${BASE_URL}/members/locations/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
       },
     });
     console.log("장소 삭제 요청 전송됨");

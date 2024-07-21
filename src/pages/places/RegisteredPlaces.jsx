@@ -6,6 +6,12 @@ import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import homeback from "../../assets/homeback.png";
+import { useQuery } from "react-query";
+import Spinner from "../../components/Spinner";
+import { getSavedPlaces } from "../../services/placeApi";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
+
 const HomeWrapper = styled.div`
   height: 100vh;
   background-color: #ffffff;
@@ -84,8 +90,12 @@ const PlaceLocation = styled.span`
 const RegisteredPlaces = () => {
   const navigate = useNavigate();
   const [savedPlaces, setSavedPlaces] = useState([]);
+  const userId = useRecoilValue(userIdState);
+  const { data, error, isLoading } = useQuery(["savedPlaces", userId], () =>
+    getSavedPlaces(userId)
+  );
 
-  useEffect(() => {}, []);
+  // if (error) return <div>Error</div>;
 
   return (
     <HomeWrapper className="All">
@@ -98,10 +108,11 @@ const RegisteredPlaces = () => {
       <Wrapper>
         <div>
           <BlackText style={{ display: "inline" }}>장소 목록</BlackText>
-          <GreenText>n</GreenText>
+          <GreenText>{data ? data.length : 0}</GreenText>
         </div>
         <GrayText onClick={() => navigate("/deletePlaces")}>편집</GrayText>
       </Wrapper>
+      {isLoading && <Spinner />}
       <PlacesUl>
         <PlacesLi>
           <div>
