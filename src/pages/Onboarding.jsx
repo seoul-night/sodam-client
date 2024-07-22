@@ -200,7 +200,7 @@ const Onboarding = () => {
   const handleClick = () => {
     if (currentPage === 1) {
       window.location.href =
-        "https://sodamsodam.site/api/members/kakao/login/test";
+        "https://sodamsodam.site/api/members/kakao/login";
     }
   };
 
