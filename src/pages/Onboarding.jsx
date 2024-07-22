@@ -23,7 +23,7 @@ const HomeWrapper = styled.div`
 `;
 const DotWrapper = styled.div`
   height: 120px;
-  background-color: rgba(0, 0, 0, 0.01);
+  /* background-color: rgba(0, 0, 0, 0.01); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@ const StartLink = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: ${(props) => (props.active ? "#FEE500" : "#464b53")};
+  background-color: #fee500;
   border-radius: 10px;
   margin: auto;
   z-index: 3;
@@ -56,14 +56,14 @@ const StartLink = styled.div`
   color: ${(props) => (props.active ? "black" : "white")};
   font-size: 16px;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */
 `;
 
 const BtnWrap = styled.div`
   display: flex;
   height: 12%;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   right: 0;
   justify-content: center;
@@ -208,21 +208,21 @@ const Onboarding = () => {
     <HomeWrapper className="Home">
       {currentPage == 0 ? (
         <DotWrapper>
-          <Dot>
-            <FontAwesomeIcon icon={faCircle} />
-          </Dot>
           <GreenDot>
             <FontAwesomeIcon icon={faCircle} />
           </GreenDot>
+          <Dot>
+            <FontAwesomeIcon icon={faCircle} />
+          </Dot>
         </DotWrapper>
       ) : (
         <DotWrapper>
-          <GreenDot>
-            <FontAwesomeIcon icon={faCircle} />
-          </GreenDot>
           <Dot>
             <FontAwesomeIcon icon={faCircle} />
           </Dot>
+          <GreenDot>
+            <FontAwesomeIcon icon={faCircle} />
+          </GreenDot>
         </DotWrapper>
       )}
       <ViewWrapper offset={-50 * currentPage}>
@@ -232,7 +232,6 @@ const Onboarding = () => {
           <SubWrap>
             <SubText>자주 몸을 움직이는 86.1%의 어르신이</SubText>
             <SubText>이전보다 더 건강해졌다고 합니다</SubText>
-            <SubText>수면에 도움을 줍니다.</SubText>
           </SubWrap>
         </View>
         <View>
@@ -249,6 +248,12 @@ const Onboarding = () => {
       </Onboard1>
       <Onboard2 offset={-100 * currentPage}>
         <img src={onboard2} style={{ width: "100%" }} />
+        <BtnWrap>
+          <StartLink onClick={handleClick} active={currentPage === 1 ? 1 : 0}>
+            <img src={kakaoIcon} style={{ marginRight: "10px" }} />
+            카카오로 로그인하기
+          </StartLink>
+        </BtnWrap>
       </Onboard2>
       {currentPage === 0 && (
         <Chevron style={{ bottom: "50%", right: "20px" }} onClick={handleNext}>
@@ -260,13 +265,6 @@ const Onboarding = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </Chevron>
       )}
-
-      <BtnWrap>
-        <StartLink onClick={handleClick} active={currentPage === 1 ? 1 : 0}>
-          <img src={kakaoIcon} style={{ marginRight: "10px" }} />
-          카카오로 로그인하기
-        </StartLink>
-      </BtnWrap>
     </HomeWrapper>
   );
 };
