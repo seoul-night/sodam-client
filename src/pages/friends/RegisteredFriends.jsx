@@ -1,11 +1,15 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import friends from "../../assets/sodam/ic/friends.png";
 import homeback from "../../assets/homeback.png";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
+import { useQuery } from "react-query";
+import { getFriends } from "../../services/friendsApi";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -84,7 +88,18 @@ const FreindsLi = styled.li`
 `;
 
 const RegisteredFriends = () => {
+  const userId = useRecoilValue(userIdState);
   const navigate = useNavigate();
+  const { data, error, isLoading } = useQuery(
+    ["savedFriends", userId],
+    () => getFriends(userId),
+    {
+      onSuccess: (data) => {
+        console.log("Fetched friends data:", data);
+      },
+    }
+  );
+
   return (
     <HomeWrapper className="All">
       <Header headerText={"등록한 친구"} icon={friends} />
@@ -101,6 +116,13 @@ const RegisteredFriends = () => {
         <GrayText onClick={() => navigate("/deleteFriend")}>편집</GrayText>
       </Wrapper>
       <FriendsUl>
+        {/* {data &&
+          data.map((friend, i) => (
+            <FreindsLi key={i}>
+              <img src={friend.profile} />
+              {friend.nickname}
+            </FreindsLi>
+          ))} */}
         <FreindsLi>
           <img src={homeback} />
           김옥순
@@ -111,3 +133,4 @@ const RegisteredFriends = () => {
 };
 
 export default RegisteredFriends;
+// "sktks11@naver.com"

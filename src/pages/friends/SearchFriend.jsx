@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchHeader from "../../components/layout/SearchHeader";
 import styled from "styled-components";
 import homeback from "../../assets/homeback.png";
-import DeleteModal from "../../components/common/DeleteModal";
 import { useNavigate } from "react-router-dom";
+import { addFriend, findFriend } from "../../services/friendsApi";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -50,18 +52,52 @@ const AddBtn = styled.button`
 
 const SearchFriend = () => {
   const navigate = useNavigate();
+  const [typedText, setTypedText] = useState("");
+  const [response, setResponse] = useState(null);
+  const userId = useRecoilValue(userIdState);
 
-  const handleFormSubmit = () => {};
+  const handleInputChange = (event) => {
+    setTypedText(event.target.value);
+    console.log(typedText);
+  };
+
+  const handleClick = async () => {
+    addFriend(userId, response.familyId);
+    navigate("/friends");
+  };
+
+  useEffect(() => {
+    if (response) {
+      console.log("Fetched friend data:", response);
+    }
+  }, [response]);
+
+  const handleFormSubmit = async () => {
+    try {
+      const result = await findFriend(typedText);
+      setResponse(result);
+    } catch (error) {
+      console.error("Error fetching friend data:", error);
+    }
+  };
+
   return (
     <HomeWrapper className="All">
-      {/* <DeleteModal ModalText={"친구를 정말 삭제할까요?"} /> */}
-      <SearchHeader inputPH={"친구의 카카오 이메일 입력"} />
+      <SearchHeader
+        inputPH={"친구의 카카오 이메일 입력"}
+        handleInputChange={handleInputChange}
+        handleFormSubmit={handleFormSubmit}
+      />
 
-      <SearchedPerson>
-        <PersonImg src={homeback} />
-        <PersonName>adsf</PersonName>
-        <AddBtn onClick={() => navigate("/friends")}>추가하기</AddBtn>
-      </SearchedPerson>
+      {response && (
+        <SearchedPerson>
+          <PersonImg src={response.profile} />
+          <PersonName>{response.nickName}</PersonName>
+          <AddBtn onClick={addFriend(userId, response.familyId)}>
+            추가하기
+          </AddBtn>
+        </SearchedPerson>
+      )}
     </HomeWrapper>
   );
 };

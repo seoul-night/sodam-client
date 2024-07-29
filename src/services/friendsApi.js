@@ -27,3 +27,53 @@ export const addFriend = async ({ userId, searchId }) => {
     throw error;
   }
 };
+
+//내 친구 정보 조회
+export const getFriends = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/members/friend/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("친구 목록 : ", response);
+    return response.data;
+  } catch (error) {
+    console.log("친구 정보 조회 에러 ", error);
+  }
+};
+
+//친구 삭제
+export const deleteFriend = async (userId) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/members/friend/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log("친구 삭제 에러 : ", error);
+  }
+};
+
+//친구 검색
+export const findFriend = async (targetUserEmail) => {
+  try {
+    console.log(targetUserEmail);
+    const response = await axios.get(
+      `${BASE_URL}/members/friend/search/${targetUserEmail}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log("친구 검색 에러 : ", error);
+  }
+};
