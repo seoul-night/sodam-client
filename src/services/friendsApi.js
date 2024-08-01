@@ -7,10 +7,10 @@ const token = localStorage.getItem("token");
 
 const APP_KEY = process.env.REACT_APP_APP_KEY;
 
-export const addFriend = async (userId, searchId) => {
+export const addFriend = async (userId, friendId) => {
   try {
-    const data = { searchId };
-    const response = await axios.put(
+    const data = { friendId: friendId };
+    const response = await axios.post(
       `${BASE_URL}/members/friend/${userId}`,
       data,
       {
@@ -45,14 +45,17 @@ export const getFriends = async (userId) => {
 };
 
 //친구 삭제
-export const deleteFriend = async (userId) => {
+export const deleteFriend = async (userId, targetUserId) => {
   try {
-    const response = await axios.put(`${BASE_URL}/members/friend/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.delete(
+      `${BASE_URL}/members/friend/${userId}/${targetUserId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
   } catch (error) {
     console.log("친구 삭제 에러 : ", error);
   }

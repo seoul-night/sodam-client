@@ -29,6 +29,7 @@ import CheckLocation from "./pages/places/CheckLocation.jsx";
 import SetPlaceName from "./pages/places/SetPlaceName.jsx";
 import DeletePlaces from "./pages/places/DeletePlaces.jsx";
 import Test from "./pages/Test.jsx";
+import CheckParentLocation from "./pages/friends/CheckParentLocation.jsx";
 
 function App() {
   // APp.js 렌더링시 뷰포트 높이 계산 함수
@@ -60,6 +61,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Onboarding />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/checkParentLocation" element={<CheckParentLocation />} />
         <Route
           path="/home"
           element={

@@ -5,6 +5,7 @@ import map_marker_start from "../assets/sodam/map_marker_start.png";
 import map_marker_end from "../assets/sodam/map_marker_end.png";
 import map_marker_light from "../assets/map_marker_light.png";
 import map_marker from "../assets/map_marker (1).png";
+import parent_marker from "../assets/sodam/ic/map_marker_parents.png";
 
 const NavigationMap = ({
   latitudeList = [],
@@ -59,7 +60,7 @@ const NavigationMap = ({
         <MapMarker
           position={{ lat, lng }}
           image={{
-            src: map_marker,
+            src: parent_marker,
             size: {
               width: 56,
               height: 56,

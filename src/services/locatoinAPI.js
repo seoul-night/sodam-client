@@ -15,12 +15,13 @@ export const addLocation = async (userId, latitude, longitude) => {
     longitude,
   };
   try {
-    await axios.post(`${BASE_URL}/family/locations`, data, {
+    const response = await axios.post(`${BASE_URL}/family/locations`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
+    console.log("위치 데이터 전송 ; ", response);
   } catch (error) {
     console.log("위치 데이터 저장 에러 : ", error);
   }
@@ -32,10 +33,11 @@ export const getLocation = async (userId) => {
     const response = await axios.get(`${BASE_URL}/family/locations/${userId}`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
-    return response.data;
+    console.log("위치 데이터 조회 : ", response);
+    return response.data[0] || { latitude: 0, longitude: 0 };
   } catch (error) {
     console.log(error);
   }

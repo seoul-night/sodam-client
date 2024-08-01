@@ -95,7 +95,7 @@ const SearchFriend = () => {
           <PersonName>{response.nickName}</PersonName>
           <AddBtn
             onClick={() => {
-              addFriend(userId, response.familyId);
+              addFriend(userId, response.userId);
               navigate("/friends");
             }}
           >

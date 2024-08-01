@@ -74,6 +74,7 @@ const FreindsLi = styled.li`
   box-sizing: border-box;
   padding: 12px 16px;
   cursor: pointer;
+  margin-bottom: 10px;
 
   img {
     width: 56px;
@@ -110,22 +111,18 @@ const RegisteredFriends = () => {
       <Wrapper>
         <div>
           <BlackText style={{ display: "inline" }}>친구 목록</BlackText>
-          <GreenText>n</GreenText>
+          <GreenText>{data && data.length}</GreenText>
         </div>
         <GrayText onClick={() => navigate("/deleteFriend")}>편집</GrayText>
       </Wrapper>
       <FriendsUl>
-        {/* {data &&
+        {data &&
           data.map((friend, i) => (
             <FreindsLi key={i}>
               <img src={friend.profile} />
-              {friend.nickname}
+              {friend.nickName}
             </FreindsLi>
-          ))} */}
-        <FreindsLi>
-          <img src={homeback} />
-          김옥순
-        </FreindsLi>
+          ))}
       </FriendsUl>
     </HomeWrapper>
   );

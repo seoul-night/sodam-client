@@ -6,6 +6,10 @@ import Header from "../../components/Header";
 import vector from "../../assets/sodam/ic/Vector.png";
 import CloseModal from "../../components/CloseModal";
 import DeleteModal from "../../components/common/DeleteModal";
+import { QueryClient, useMutation, useQuery } from "react-query";
+import { useRecoilValue } from "recoil";
+import { userIdState } from "../../atoms";
+import { deleteFriend, getFriends } from "../../services/friendsApi";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -49,15 +53,25 @@ const FreindsLi = styled.li`
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: #f6f8fa;
   color: #1c1e1f;
   border-radius: 10px;
   box-sizing: border-box;
+  justify-content: space-between;
   padding: 12px 16px;
   cursor: pointer;
-`;
+  margin-bottom: 10px;
 
+  img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+`;
 const FriendInfo = styled.div`
   display: flex;
   align-items: center;
@@ -76,16 +90,47 @@ const FriendInfo = styled.div`
 const DeleteFriend = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedId, setClickedId] = useState();
+  const userId = useRecoilValue(userIdState);
+  const { data, error, isLoading } = useQuery(
+    ["savedFriends", userId],
+    () => getFriends(userId),
+    {
+      onSuccess: (data) => {
+        console.log("Fetched friends data:", data);
+      },
+    }
+  );
+
+  const mutation = useMutation(deleteFriend, {
+    onSuccess: () => {
+      console.log("삭제 성공");
+      QueryClient.invalidateQueries(["savedFriends", userId]);
+      navigate("/savedPlaces");
+    },
+    onError: () => {
+      console.log("삭제 에러");
+    },
+  });
+
+  const handleDelete = () => {
+    mutation.mutate(clickedId);
+    setIsModalOpen(false);
+  };
 
   return (
     <HomeWrapper className="All">
       {isModalOpen && (
         <DeleteModal
-          modalFn={""}
+          modalFn={() => {}}
           ModalText={"친구를 정말 삭제할까요?"}
           navigateTo={"/friends"}
           onClose={() => {
             setIsModalOpen(false);
+          }}
+          onDelete={() => {
+            console.log(userId, clickedId);
+            deleteFriend(userId, clickedId);
           }}
         />
       )}
@@ -93,24 +138,29 @@ const DeleteFriend = () => {
       <Wrapper>
         <div>
           <BlackText style={{ display: "inline" }}>친구 목록</BlackText>
-          <GreenText>n</GreenText>
+          <GreenText>{data && data.length}</GreenText>
         </div>
-        <GrayText onClick={() => navigate("/deleteFriend")}>편집</GrayText>
       </Wrapper>
       <FriendsUl>
-        <FreindsLi>
-          <FriendInfo>
-            <img src={homeback} />
-            김옥순
-          </FriendInfo>
-          <img
-            src={vector}
-            style={{ width: "24px", height: "24px" }}
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          />
-        </FreindsLi>
+        {data &&
+          data.map((friend, i) => (
+            <FreindsLi key={i}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img src={friend.profile} />
+                {friend.nickName}
+              </div>
+              <img
+                src={vector}
+                style={{ width: "24px", height: "24px" }}
+                onClick={() => {
+                  setClickedId(friend.userId);
+                  console.log(friend.userId);
+
+                  setIsModalOpen(true);
+                }}
+              />
+            </FreindsLi>
+          ))}
       </FriendsUl>
     </HomeWrapper>
   );
