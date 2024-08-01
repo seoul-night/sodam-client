@@ -576,9 +576,15 @@ const Home = () => {
           >
             <img
               src={chatIcon}
-              style={{ width: "44px", marginRight: "10px", marginLeft: "2px" }}
+              style={{
+                width: "44px",
+                marginRight: "10px",
+                marginLeft: "2px",
+                margin: "4px",
+                marginRight: "8px",
+              }}
             />
-            <h4>AI 챗봇에 물어보기</h4>
+            <h4>AI 영웅에게 물어보기</h4>
           </div>
           <FontAwesomeIcon icon={faChevronRight} />
         </ChatWrap>
