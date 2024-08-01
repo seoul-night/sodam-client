@@ -24,7 +24,7 @@ root.render(
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />{" "}
+        {/* <ReactQueryDevtools initialIsOpen={false} />{" "} */}
         {/* React Query Devtools 추가 */}
       </QueryClientProvider>
     </RecoilRoot>

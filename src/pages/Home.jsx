@@ -26,6 +26,7 @@ import LottieAnimation from "../utils/LottieAnimation";
 import LottieAnimation2 from "../utils/LottieAnimation2";
 import clap from "../assets/sodam/ic/clap.png";
 import { getLocation } from "../services/locatoinAPI";
+import { enterChat } from "../services/chatbotAPI";
 
 const CloseModalContainer = styled.div`
   position: fixed;
@@ -560,7 +561,12 @@ const Home = () => {
           })}
         </div>
       </GoWalk>
-      <ChatWrap>
+      <ChatWrap
+        onClick={() => {
+          enterChat(userId, locationName);
+          navigate("/chatbot");
+        }}
+      >
         <div
           style={{
             display: "flex",
