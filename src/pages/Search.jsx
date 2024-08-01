@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { faChevronLeft, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import close from "../assets/close.png";
+// import close from "../assets/close.png";
+import close from "../assets/sodam/ic/close.png";
 
 const HomeWrapper = styled.div`
   height: 100vh;
@@ -323,8 +324,8 @@ const Search = () => {
                   <img
                     src={close}
                     style={{
-                      width: "18px",
-                      height: "18px",
+                      width: "12px",
+                      height: "12px",
                       paddingLeft: "10px",
                       paddingTop: "9px",
                       paddingBottom: "10px",

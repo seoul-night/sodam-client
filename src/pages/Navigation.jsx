@@ -8,8 +8,8 @@ import {
   fetchPathDetail,
 } from "../services/api";
 import NavigationMap from "../components/NavigationMap";
-import ic_cctv from "../assets/sodam/ic/ic_cctv.png";
-import something from "../assets/sodam/img/something.png";
+import ic_cctv from "../assets/sodam/ic/ic_cctv.svg";
+import something from "../assets/sodam/ic/something.svg";
 import close from "../assets/close.png";
 import map_marker from "../assets/sodam/map_marker.png";
 import CloseModal from "../components/CloseModal";
@@ -313,7 +313,10 @@ const Navigation = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {fetchedData.safetyLatitudeList && (
                   <CCTVnumber>
-                    <img src={ic_cctv} style={{ marginRight: "6px" }} />
+                    <img
+                      src={ic_cctv}
+                      style={{ marginRight: "6px", height: "100%" }}
+                    />
                     CCTV {fetchedData.safetyLatitudeList.length}대
                   </CCTVnumber>
                 )}

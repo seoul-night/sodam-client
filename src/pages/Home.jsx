@@ -17,7 +17,7 @@ import KakaoLogin, { fetchAttractions, keywordSearch } from "../services/api";
 import { createRequest } from "../utils/api-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
-import chatIcon from "../assets/sodam/ic/chatIcon.png";
+import chatIcon from "../assets/sodam/img/chatbot.png";
 
 const HomeWrapper = styled.div`
   z-index: 1;
@@ -85,7 +85,7 @@ const Pic = styled.div`
 
 const Name = styled.span`
   color: #15a36a;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 `;
 
@@ -97,6 +97,7 @@ const Text = styled.span`
   color: #f6f8fa;
   font-size: 18px;
   font-weight: 500;
+  line-height: 150%;
 `;
 
 const Title = styled.p`
@@ -344,7 +345,12 @@ const Home = () => {
               <Text>부모님 위치 확인 </Text>
               <img
                 src={homebtn1}
-                style={{ position: "absolute", bottom: "0", right: "0" }}
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  right: "0",
+                  width: "142px",
+                }}
               />
             </Box>
           </Link>
@@ -354,7 +360,12 @@ const Home = () => {
               <Text>내 위치 보내기</Text>
               <img
                 src={homebtn2}
-                style={{ position: "absolute", bottom: "0", right: "0" }}
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  right: "0",
+                  width: "142px",
+                }}
               />
             </Box>
           </Link>

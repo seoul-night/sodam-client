@@ -7,11 +7,11 @@ const token = localStorage.getItem("token");
 
 const APP_KEY = process.env.REACT_APP_APP_KEY;
 
-export const addFriend = async ({ userId, searchId }) => {
+export const addFriend = async (userId, searchId) => {
   try {
-    const data = { userId, searchId };
-    const response = await axios.post(
-      `${BASE_URL}/members/search/${userId}/${searchId}`,
+    const data = { searchId };
+    const response = await axios.put(
+      `${BASE_URL}/members/friend/${userId}`,
       data,
       {
         headers: {
@@ -20,11 +20,11 @@ export const addFriend = async ({ userId, searchId }) => {
         },
       }
     );
-    console.log(response);
+    console.log("친구 추가 : ", response);
     return response.data;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.log("친구 추가 에러 ", error);
+    // throw error;
   }
 };
 

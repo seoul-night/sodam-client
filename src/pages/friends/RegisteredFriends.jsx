@@ -17,7 +17,6 @@ const HomeWrapper = styled.div`
   overflow: hidden;
   position: relative;
   padding: 20px;
-  /* padding-top: 0px; */
   box-sizing: border-box;
 `;
 

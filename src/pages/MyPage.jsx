@@ -24,8 +24,8 @@ import {
   logoutRequest,
 } from "../services/api"; // handleLogout 제거
 import { jwtDecode } from "jwt-decode";
-import place from "../assets/sodam/ic/place.png";
-import friends from "../assets/sodam/ic/friends.png";
+import place from "../assets/sodam/ic/place.svg";
+import friends from "../assets/sodam/ic/friends.svg";
 import logo from "../assets/sodam/img/logo.png";
 
 const HomeWrapper = styled.div`

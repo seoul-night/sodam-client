@@ -11,7 +11,7 @@ import onboard2 from "../assets/sodam/img/onboard2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { geolocationState, userDataState, locationState } from "../atoms";
-import kakaoIcon from "../assets/sodam/ic/kakao.png";
+import kakaoIcon from "../assets/sodam/ic/kakao.svg";
 
 const HomeWrapper = styled.div`
   height: 100vh;

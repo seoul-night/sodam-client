@@ -93,7 +93,12 @@ const SearchFriend = () => {
         <SearchedPerson>
           <PersonImg src={response.profile} />
           <PersonName>{response.nickName}</PersonName>
-          <AddBtn onClick={addFriend(userId, response.familyId)}>
+          <AddBtn
+            onClick={() => {
+              addFriend(userId, response.familyId);
+              navigate("/friends");
+            }}
+          >
             추가하기
           </AddBtn>
         </SearchedPerson>
