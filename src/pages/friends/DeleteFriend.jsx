@@ -122,7 +122,6 @@ const DeleteFriend = () => {
     <HomeWrapper className="All">
       {isModalOpen && (
         <DeleteModal
-          modalFn={() => {}}
           ModalText={"친구를 정말 삭제할까요?"}
           navigateTo={"/friends"}
           onClose={() => {

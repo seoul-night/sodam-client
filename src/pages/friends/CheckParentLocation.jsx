@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavigationMap from "../../components/NavigationMap";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -90,10 +90,15 @@ const Button = styled.button`
   }
 `;
 
-const CheckParentLocation = ({ locationName }) => {
+const CheckParentLocation = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { address_name, road_address_name, y, x } = location.state || {};
+  const { address_name, road_address_name, y, x, locationsName } =
+    location.state || {};
+
+  useEffect(() => {
+    console.log(locationsName);
+  }, []);
 
   return (
     <HomeWrapper className="All">
@@ -117,7 +122,7 @@ const CheckParentLocation = ({ locationName }) => {
           <div
             style={{ display: "flex", marginTop: "7px", marginBottom: "7px" }}
           >
-            <LocationText>{locationName}</LocationText>
+            <LocationText>{locationsName}</LocationText>
           </div>
 
           <div style={{ display: "flex", alignItems: "center" }}></div>

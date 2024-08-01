@@ -109,8 +109,9 @@ const Head = styled.div`
 `;
 
 const UserWrap = styled.div`
-  height: 270px;
+  height: 240px;
   padding: 30px;
+  padding-bottom: 0px;
   box-sizing: border-box;
   background-image: url(${homeback});
   background-size: cover;
@@ -149,7 +150,7 @@ const Name = styled.span`
 `;
 
 const GoWalk = styled.div`
-  margin: 30px;
+  margin: 0px 30px;
 `;
 
 const Text = styled.span`
@@ -168,7 +169,7 @@ const Title = styled.p`
 `;
 
 const Box = styled.div`
-  height: 150px;
+  height: 160px;
   background-color: #343449;
   padding: 15px;
   box-sizing: border-box;
@@ -234,13 +235,29 @@ const SearchBar = styled.div`
   margin-left: 30px;
   margin-right: 30px;
   background-color: #ebeef1;
+  margin: 20px 30px;
+`;
+
+const ChatFrame = styled.div`
+  background: linear-gradient(45deg, #31d191, #3eb9fe);
+  height: 56px;
+  width: calc(100%-60px);
+  margin: 0px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 26px;
+  /* margin: 20px 0px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const ChatWrap = styled.div`
+  z-index: 2;
   background-color: #f6f8fa;
   font-size: 14px;
   height: 52px;
-  width: calc(100%-60px);
+  width: calc(100%);
   border-radius: 26px;
   display: flex;
   align-items: center;
@@ -248,8 +265,7 @@ const ChatWrap = styled.div`
   box-sizing: border-box;
   padding-right: 20px;
   cursor: pointer;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin: 20px 1px;
 
   h4 {
     font-size: 14px;
@@ -297,9 +313,9 @@ const Home = () => {
       console.log("위치 데이터 조회 : ", response);
 
       if (response) {
-        const { latitude, longitude } = response;
+        const { latitude, longitude, locationsName } = response;
         navigate("/checkParentLocation", {
-          state: { y: latitude, x: longitude, locationName: locationName },
+          state: { y: latitude, x: longitude, locationsName: locationsName },
         });
       }
     } catch (error) {
@@ -398,7 +414,8 @@ const Home = () => {
                   addLocation(
                     userId,
                     geolocation.latitude,
-                    geolocation.longitude
+                    geolocation.longitude,
+                    locationName
                   );
                   setIsModalOpen(false);
                   setIsSecondModal(true);
@@ -494,7 +511,7 @@ const Home = () => {
           </div>
           <div>
             <Text style={{ color: "black", fontWeight: "600" }}>
-              안전하게 어디로 도착할까요?
+              어디로 안전하게 이동할까요?
             </Text>
           </div>
         </div>
@@ -542,6 +559,31 @@ const Home = () => {
           </Box>
         </div>
       </GoWalk>
+      <ChatFrame>
+        <ChatWrap
+          onClick={() => {
+            enterChat(userId, locationName);
+            navigate("/chatbot");
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <img
+              src={chatIcon}
+              style={{ width: "44px", marginRight: "10px", marginLeft: "2px" }}
+            />
+            <h4>AI 챗봇에 물어보기</h4>
+          </div>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </ChatWrap>
+      </ChatFrame>
+
       <GoWalk>
         <Title>부모님과 함께하기 좋은 여행지</Title>
         <div style={{ boxSizing: "border-box" }}>
@@ -567,28 +609,7 @@ const Home = () => {
           })}
         </div>
       </GoWalk>
-      <ChatWrap
-        onClick={() => {
-          enterChat(userId, locationName);
-          navigate("/chatbot");
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <img
-            src={chatIcon}
-            style={{ width: "44px", marginRight: "10px", marginLeft: "2px" }}
-          />
-          <h4>AI 챗봇에 물어보기</h4>
-        </div>
-        <FontAwesomeIcon icon={faChevronRight} />
-      </ChatWrap>
+
       <Footer
         home={homeColored}
         my={My}

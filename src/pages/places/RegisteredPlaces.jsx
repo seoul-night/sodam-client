@@ -113,7 +113,7 @@ const RegisteredPlaces = () => {
         </div>
         <GrayText onClick={() => navigate("/deletePlaces")}>편집</GrayText>
       </Wrapper>
-      {isLoading && <Spinner />}
+      {/* {isLoading && <Spinner />} */}
       <PlacesUl>
         {data &&
           data.map((place, i) => (

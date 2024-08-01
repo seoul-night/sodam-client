@@ -8,11 +8,17 @@ const token = localStorage.getItem("token");
 const APP_KEY = process.env.REACT_APP_APP_KEY;
 
 //위치 데이터 저장
-export const addLocation = async (userId, latitude, longitude) => {
+export const addLocation = async (
+  userId,
+  latitude,
+  longitude,
+  locationsName
+) => {
   const data = {
     userId,
     latitude,
     longitude,
+    locationsName,
   };
   try {
     const response = await axios.post(`${BASE_URL}/family/locations`, data, {
