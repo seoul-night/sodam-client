@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import homeback from "../../assets/homeback.png";
@@ -75,9 +75,20 @@ const FriendInfo = styled.div`
 
 const DeleteFriend = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <HomeWrapper className="All">
-      <DeleteModal ModalText={"친구를 정말 삭제할까요?"} />
+      {isModalOpen && (
+        <DeleteModal
+          modalFn={""}
+          ModalText={"친구를 정말 삭제할까요?"}
+          navigateTo={"/friends"}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+        />
+      )}
       <Header></Header>
       <Wrapper>
         <div>
@@ -95,7 +106,9 @@ const DeleteFriend = () => {
           <img
             src={vector}
             style={{ width: "24px", height: "24px" }}
-            onClick={() => {}}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
           />
         </FreindsLi>
       </FriendsUl>

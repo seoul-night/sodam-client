@@ -227,11 +227,11 @@ const Onboarding = () => {
       )}
       <ViewWrapper offset={-50 * currentPage}>
         <View>
-          <MainText>부모님의 건강을 위해 </MainText>
-          <MainText>산책을 권유해보세요</MainText>
+          <MainText>부모님이 어디든 안전하게 </MainText>
+          <MainText>이동할 수 있도록</MainText>
           <SubWrap>
-            <SubText>자주 몸을 움직이는 86.1%의 어르신이</SubText>
-            <SubText>이전보다 더 건강해졌다고 합니다</SubText>
+            <SubText>질병관리청에 따르면 65세 이상 노인은</SubText>
+            <SubText>낙상 사고율이 높고 조기 발견이 어렵습니다.</SubText>
           </SubWrap>
         </View>
         <View>

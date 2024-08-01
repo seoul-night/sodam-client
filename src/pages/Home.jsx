@@ -6,7 +6,7 @@ import homeColored from "../assets/sodam/ic/homeColored.png";
 import My from "../assets/sodam/ic/My.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { geolocationState, userDataState } from "../atoms";
+import { geolocationState, userDataState, userIdState } from "../atoms";
 import { useState } from "react";
 import { locationState } from "../atoms";
 import logo from "../assets/sodam/img/logo.png";
@@ -17,11 +17,13 @@ import KakaoLogin, { fetchAttractions, keywordSearch } from "../services/api";
 import { createRequest } from "../utils/api-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
-import chatIcon from "../assets/sodam/img/chatbot.png";
+import chatIcon from "../assets/sodam/ic/chatIcon.png";
 import map_marker from "../assets/sodam/map_marker.png";
 import LottieAnimation from "../utils/LottieAnimation";
 // import LottieAnimation from "../utils/lottieAnimation";
 import clap from "../assets/sodam/ic/clap.png";
+import { addLocation } from "../services/locatoinAPI";
+import LottieAnimation2 from "../utils/LottieAnimation2";
 
 const CloseModalContainer = styled.div`
   position: fixed;
@@ -174,6 +176,7 @@ const Box = styled.div`
   position: relative;
   overflow: hidden;
 `;
+
 const SubText = styled.span`
   font-size: 12px;
   line-height: 18px;
@@ -266,6 +269,11 @@ const Home = () => {
   const [isSecondModal, setIsSecondModal] = useState(false);
   const { kakao } = window;
   const setLocation = useSetRecoilState(locationState);
+  const geolocation = useRecoilValue(geolocationState);
+  const userId = useRecoilValue(userIdState);
+
+  const currentLat = geolocation.latitude;
+  const currentLng = geolocation.longitude;
 
   const toAttractionDetail = async (latitude, longitude) => {
     try {
@@ -375,6 +383,8 @@ const Home = () => {
                 onClick={() => {
                   // deletePlace();
                   // navigate();
+                  addLocation(userId, currentLat, currentLng);
+                  // console.log(userId, currentLat, currentLng);
                   setIsModalOpen(false);
                   setIsSecondModal(true);
                 }}
@@ -500,44 +510,36 @@ const Home = () => {
             display: "flex",
             boxSizing: "border-box",
             justifyContent: "space-between",
+            gap: "8px",
+            boxSizing: "border-box",
           }}
         >
-          <Link to="/nearby">
-            <Box style={{ width: "154px", backgroundColor: "#27C384" }}>
-              <SubText2>안전하게</SubText2>
-              <Text>부모님 위치 확인 </Text>
-              <LottieAnimation />
-              {/* <img
-                src={homebtn1}
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  right: "0",
-                  width: "142px",
-                }}
-              /> */}
-            </Box>
-          </Link>
-          <Link to="">
-            <Box
-              style={{ width: "154px", backgroundColor: "#3EB9FE" }}
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              <SubText2>자식에게</SubText2>
-              <Text>내 위치 보내기</Text>
-              <img
-                src={homebtn2}
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  right: "0",
-                  width: "142px",
-                }}
-              />
-            </Box>
-          </Link>
+          <Box
+            style={{
+              width: "154px",
+              backgroundColor: "#27C384",
+              flexGrow: "1",
+            }}
+          >
+            <SubText2>안전하게</SubText2>
+            <Text>부모님 위치 확인 </Text>
+            <LottieAnimation />
+          </Box>
+          <Box
+            style={{
+              width: "154px",
+              backgroundColor: "#3EB9FE",
+              flexGrow: "1",
+            }}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
+            <SubText2>자식에게</SubText2>
+            <Text>내 위치 보내기</Text>
+
+            <LottieAnimation2 />
+          </Box>
         </div>
       </GoWalk>
       <GoWalk>
