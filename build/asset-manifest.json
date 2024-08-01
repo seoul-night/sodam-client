@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.529741e4.css",
+    "main.js": "/static/js/main.2a309e65.js",
+    "static/js/453.dd212063.chunk.js": "/static/js/453.dd212063.chunk.js",
+    "static/media/wave.jpg": "/static/media/wave.1364fe022d0d017b5baa.jpg",
+    "static/media/onboard2.png": "/static/media/onboard2.34af2750b3cbcaeb51fe.png",
+    "static/media/onboard1.png": "/static/media/onboard1.3c25f32ec16fa6e7380c.png",
+    "static/media/homeback.png": "/static/media/homeback.54bea9ca4a95571ce5ad.png",
+    "static/media/homebtn2.png": "/static/media/homebtn2.c9e85b04ce0a99e88698.png",
+    "static/media/homebtn1.png": "/static/media/homebtn1.d9eec69c5c890d49120e.png",
+    "static/media/place.svg": "/static/media/place.be579ea909dd8cdb06141aa90a6494ce.svg",
+    "static/media/friends.svg": "/static/media/friends.da79fa2a1f8b4331cc1f1773eac7ec87.svg",
+    "static/media/something.svg": "/static/media/something.5bbe9c4f393ce829c7ad845648d57fdb.svg",
+    "index.html": "/index.html",
+    "static/media/ic_cctv.svg": "/static/media/ic_cctv.d3144111d00338edfc97fcb7b635aff1.svg",
+    "static/media/kakao.svg": "/static/media/kakao.76ff71110a400b3a476bcc9c2fc2bf13.svg",
+    "main.529741e4.css.map": "/static/css/main.529741e4.css.map",
+    "main.2a309e65.js.map": "/static/js/main.2a309e65.js.map",
+    "453.dd212063.chunk.js.map": "/static/js/453.dd212063.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.529741e4.css",
+    "static/js/main.2a309e65.js"
+  ]
+}
