@@ -100,6 +100,7 @@ const Progress = styled.div`
 
 const Text = styled.h2`
   color: #1c1e1f;
+  font-size: 18px;
 
   a {
     color: #1c1e1f;
@@ -193,7 +194,7 @@ const MyPage = () => {
               <Text>{userData.nickName}</Text>
             </div>
             <div>
-              <Text
+              {/* <Text
                 style={{
                   padding: "4px 12px 4px 12px",
                   borderRadius: "99px",
@@ -203,7 +204,7 @@ const MyPage = () => {
                 }}
               >
                 산책러 Lv. {parseInt(userData.exp / 100)}
-              </Text>
+              </Text> */}
             </div>
           </TextWrap>
         </ProfileWrap>

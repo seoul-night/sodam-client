@@ -18,6 +18,58 @@ import { createRequest } from "../utils/api-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import chatIcon from "../assets/sodam/img/chatbot.png";
+import map_marker from "../assets/sodam/map_marker.png";
+import LottieAnimation from "../utils/LottieAnimation";
+// import LottieAnimation from "../utils/lottieAnimation";
+import clap from "../assets/sodam/ic/clap.png";
+
+const CloseModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.6); // Optional: background shading
+`;
+
+const CloseWrap = styled.div`
+  position: fixed;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 280px;
+  height: 129px;
+  background-color: #ffffff;
+  padding: 24px 20px 16px 20px;
+  border-radius: 16px;
+  justify-content: space-around;
+  top: 50%; /* 중앙 정렬을 위해 50% */
+  left: 50%; /* 중앙 정렬을 위해 50% */
+  transform: translate(-50%, -50%); /* 중앙 정확히 배치 */
+`;
+
+const ModalBtn = styled.button`
+  color: #f6f8fa;
+  font-size: 14px;
+  padding: 12px 24px 12px 24px;
+  border-radius: 8px;
+  width: 50%;
+  border: none;
+  cursor: pointer;
+`;
+
+const BtnWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+`;
 
 const HomeWrapper = styled.div`
   z-index: 1;
@@ -55,6 +107,9 @@ const UserWrap = styled.div`
   height: 270px;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url(${homeback});
+  background-size: cover;
+  background-position: center;
 `;
 
 const Region = styled.i`
@@ -117,11 +172,12 @@ const Box = styled.div`
   border-radius: 10px;
   margin-bottom: 10px;
   position: relative;
+  overflow: hidden;
 `;
-const SubText = styled.p`
+const SubText = styled.span`
   font-size: 12px;
   line-height: 18px;
-  color: #f6f8fa;
+  color: #797982;
 `;
 
 const LongBox = styled(Box)`
@@ -144,7 +200,11 @@ const Desc = styled.h4`
   line-height: 21px;
   color: #f6f8fa;
 `;
-
+const SubText2 = styled.p`
+  font-size: 12px;
+  line-height: 18px;
+  color: #f6f8fa;
+`;
 const Badge = styled.h4`
   border-radius: 4px;
   display: inline-block;
@@ -202,6 +262,8 @@ const Home = () => {
   const [userData, setUserData] = useRecoilState(userDataState);
   const [attractions, setAttractions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSecondModal, setIsSecondModal] = useState(false);
   const { kakao } = window;
   const setLocation = useSetRecoilState(locationState);
 
@@ -271,8 +333,107 @@ const Home = () => {
 
   return (
     <HomeWrapper className="Home">
+      {isModalOpen && (
+        <CloseModalContainer onClick={() => {}}>
+          <CloseWrap onClick={(e) => e.stopPropagation()}>
+            <div style={{ textAlign: "center" }}>
+              <Text
+                style={{
+                  color: "#1C1E1F",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  marginBottom: "10px",
+                }}
+              >
+                자식에게 내 위치를 보낼까요?
+              </Text>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "6px",
+                }}
+              >
+                <img
+                  src={map_marker}
+                  style={{ width: "16px", marginRight: "4px" }}
+                />
+                <SubText>위치정보 어딘가~~</SubText>
+              </div>
+            </div>
+            <BtnWrap>
+              <ModalBtn
+                style={{ backgroundColor: "#DFDFF1" }}
+                onClick={() => {
+                  setIsModalOpen(false);
+                }}
+              >
+                닫기
+              </ModalBtn>
+              <ModalBtn
+                style={{ backgroundColor: "#27C384" }}
+                onClick={() => {
+                  // deletePlace();
+                  // navigate();
+                  setIsModalOpen(false);
+                  setIsSecondModal(true);
+                }}
+              >
+                위치 보내기
+              </ModalBtn>
+            </BtnWrap>
+          </CloseWrap>
+        </CloseModalContainer>
+      )}
+
+      {isSecondModal && (
+        <CloseModalContainer onClick={() => {}}>
+          <CloseWrap onClick={(e) => e.stopPropagation()}>
+            <div
+              style={{
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={clap}
+                style={{ width: "46px", height: "46px", marginBottom: "5px" }}
+              />
+              <Text
+                style={{
+                  color: "#1C1E1F",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  marginBottom: "10px",
+                }}
+              >
+                위치를 성공적으로 보냈어요
+              </Text>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "6px",
+                }}
+              ></div>
+            </div>
+            <BtnWrap>
+              <ModalBtn
+                style={{ backgroundColor: "#27C384", width: "100%" }}
+                onClick={() => setIsSecondModal(false)}
+              >
+                확인
+              </ModalBtn>
+            </BtnWrap>
+          </CloseWrap>
+        </CloseModalContainer>
+      )}
+
       {/* 백그라운드 이미지 */}
-      <div>
+      {/* <div>
         <img
           className="Home"
           src={homeback}
@@ -286,7 +447,7 @@ const Home = () => {
             border: "none",
           }}
         />
-      </div>
+      </div> */}
       <Head className="Home">
         <div
           style={{
@@ -314,16 +475,18 @@ const Home = () => {
           </div>
         </div>
       </Head>
-      <UserWrap>
-        <Pic>
-          <img src={userData.profile} />
-        </Pic>
+      <UserWrap style={{ backgroundImage: `${homeback}` }}>
         <div>
-          <Name>{userData.nickName}</Name>
-          <Text style={{ color: "black" }}>님,</Text>
-        </div>
-        <div>
-          <Text style={{ color: "black" }}>안전하게 어디로 도착할까요?</Text>
+          <Pic>
+            <img src={userData.profile} />
+          </Pic>
+          <div>
+            <Name>{userData.nickName}</Name>
+            <Text style={{ color: "black" }}>님,</Text>
+          </div>
+          <div>
+            <Text style={{ color: "black" }}>안전하게 어디로 도착할까요?</Text>
+          </div>
         </div>
       </UserWrap>
       <SearchBar onClick={() => navigate("/search")}>
@@ -341,9 +504,10 @@ const Home = () => {
         >
           <Link to="/nearby">
             <Box style={{ width: "154px", backgroundColor: "#27C384" }}>
-              <SubText>안전하게</SubText>
+              <SubText2>안전하게</SubText2>
               <Text>부모님 위치 확인 </Text>
-              <img
+              <LottieAnimation />
+              {/* <img
                 src={homebtn1}
                 style={{
                   position: "absolute",
@@ -351,12 +515,17 @@ const Home = () => {
                   right: "0",
                   width: "142px",
                 }}
-              />
+              /> */}
             </Box>
           </Link>
-          <Link to="/popular">
-            <Box style={{ width: "154px", backgroundColor: "#3EB9FE" }}>
-              <SubText>자식에게</SubText>
+          <Link to="">
+            <Box
+              style={{ width: "154px", backgroundColor: "#3EB9FE" }}
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              <SubText2>자식에게</SubText2>
               <Text>내 위치 보내기</Text>
               <img
                 src={homebtn2}
