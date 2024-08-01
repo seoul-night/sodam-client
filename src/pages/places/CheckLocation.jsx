@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, useNavigate } from "react-router-dom";
+import map_marker from "../../assets/sodam/map_marker.png";
 
 const HomeWrapper = styled.div`
   min-height: 100vh;
@@ -107,7 +108,7 @@ const CheckLocation = () => {
 
       <Wrap>
         <Info>
-          <GreenText>부모님 위치</GreenText>
+          <GreenText>내 위치</GreenText>
           <div
             style={{ display: "flex", marginTop: "7px", marginBottom: "7px" }}
           >
