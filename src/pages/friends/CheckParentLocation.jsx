@@ -90,7 +90,7 @@ const Button = styled.button`
   }
 `;
 
-const CheckParentLocation = () => {
+const CheckParentLocation = ({ locationName }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { address_name, road_address_name, y, x } = location.state || {};
@@ -117,7 +117,7 @@ const CheckParentLocation = () => {
           <div
             style={{ display: "flex", marginTop: "7px", marginBottom: "7px" }}
           >
-            <LocationText>{road_address_name}</LocationText>
+            <LocationText>{locationName}</LocationText>
           </div>
 
           <div style={{ display: "flex", alignItems: "center" }}></div>

@@ -25,7 +25,7 @@ import map_marker from "../assets/sodam/map_marker.png";
 import LottieAnimation from "../utils/LottieAnimation";
 import LottieAnimation2 from "../utils/LottieAnimation2";
 import clap from "../assets/sodam/ic/clap.png";
-import { getLocation } from "../services/locatoinAPI";
+import { addLocation, getLocation } from "../services/locatoinAPI";
 import { enterChat } from "../services/chatbotAPI";
 
 const CloseModalContainer = styled.div`
@@ -207,6 +207,7 @@ const Desc = styled.h4`
 const SubText2 = styled.p`
   font-size: 12px;
   line-height: 18px;
+  font-weight: 600;
   color: #f6f8fa;
 `;
 const Badge = styled.h4`
@@ -298,7 +299,7 @@ const Home = () => {
       if (response) {
         const { latitude, longitude } = response;
         navigate("/checkParentLocation", {
-          state: { y: latitude, x: longitude },
+          state: { y: latitude, x: longitude, locationName: locationName },
         });
       }
     } catch (error) {
@@ -394,6 +395,11 @@ const Home = () => {
               <ModalBtn
                 style={{ backgroundColor: "#27C384" }}
                 onClick={() => {
+                  addLocation(
+                    userId,
+                    geolocation.latitude,
+                    geolocation.longitude
+                  );
                   setIsModalOpen(false);
                   setIsSecondModal(true);
                 }}
@@ -517,7 +523,7 @@ const Home = () => {
             onClick={handleGetLocationClick}
           >
             <SubText2>안전하게</SubText2>
-            <Text>부모님 위치 확인</Text>
+            <Text style={{ fontWeight: "600" }}>부모님 위치 확인</Text>
             <LottieAnimation />
           </Box>
           <Box
@@ -531,7 +537,7 @@ const Home = () => {
             }}
           >
             <SubText2>자식에게</SubText2>
-            <Text>내 위치 보내기</Text>
+            <Text style={{ fontWeight: "600" }}>내 위치 보내기</Text>
             <LottieAnimation2 />
           </Box>
         </div>

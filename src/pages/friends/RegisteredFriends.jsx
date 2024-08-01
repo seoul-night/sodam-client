@@ -102,7 +102,7 @@ const RegisteredFriends = () => {
 
   return (
     <HomeWrapper className="All">
-      <Header headerText={"등록한 친구"} icon={friends} />
+      <Header headerText={"등록한 친구"} icon={friends} navTo={"/mypage"} />
       <BlackText>친구 등록하기</BlackText>
       <SearchBar onClick={() => navigate("/searchFriends")}>
         <FontAwesomeIcon icon={faSearch} style={{ marginRight: "8px" }} />

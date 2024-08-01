@@ -1,6 +1,6 @@
 import React from "react";
 import { Map, MapMarker, Polyline, useMap } from "react-kakao-maps-sdk";
-import map_marker from "../assets/icons/map_marker.png";
+import map_marker from "../assets/sodam/map_marker.png";
 
 const KakaoMap = ({
   latitudeList,
@@ -81,7 +81,7 @@ const KakaoMap = ({
       <Polyline
         path={polylineCoordinates}
         strokeWeight={3}
-        strokeColor={"#5e66ff"}
+        strokeColor={"#27C384"}
       />
       <AdjustBounds />
     </Map>

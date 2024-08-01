@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { locationState } from "../atoms";
-import location2 from "../assets/icons/location2.png";
+import location2 from "../assets/sodam/ic/location.png";
 
 const Header = styled.div`
   position: sticky;
   top: -20px;
   margin-top: -20px;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   /* top: 0; */
   z-index: 3;
   padding: 20px;
@@ -25,7 +25,7 @@ const Header = styled.div`
 `;
 
 const Text = styled.span`
-  color: #f6f8fa;
+  color: #333344;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -40,7 +40,7 @@ const CourseHeader = ({ headerText, location }) => {
         <FontAwesomeIcon
           icon={faChevronLeft}
           style={{
-            color: "#F6F8FA",
+            color: "#333344",
             fontSize: "16px",
             marginRight: "10px",
             left: "5px",

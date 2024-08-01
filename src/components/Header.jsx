@@ -29,19 +29,30 @@ const Text = styled.span`
   line-height: 24px;
 `;
 
-const Header = ({ headerText, icon }) => {
+const Header = ({ headerText, icon, navTo }) => {
   const navigate = useNavigate();
   return (
     <Head>
-      <Link style={{ height: "24px", display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          height: "24px",
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          if (navTo) {
+            navigate(navTo);
+          } else {
+            navigate(-1);
+          }
+        }}
+      >
         <FontAwesomeIcon
           icon={faChevronLeft}
           style={{ color: "#1c1e1f", paddingRight: "15px" }}
-          onClick={() => {
-            navigate(-1);
-          }}
         />
-      </Link>
+      </div>
       <Text>{headerText}</Text>
       <img src={icon} style={{ width: "18px" }} />
     </Head>

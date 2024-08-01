@@ -10,7 +10,7 @@ import { createRequest } from "../utils/api-utils";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -24,8 +24,8 @@ const HomeWrapper = styled.div`
 const Button = styled.button`
   width: 100%;
   height: 56px;
-  background-color: #5e66ff;
-  color: #f6f8fa;
+  background-color: #27c384;
+  color: #ffffff;
   font-size: 16px;
   border-radius: 10px;
   border: none;
@@ -33,7 +33,7 @@ const Button = styled.button`
   margin-bottom: 10px;
   justify-content: flex-end;
   &:hover {
-    background-color: #4950d4;
+    background-color: #007d4b;
   }
 `;
 
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.h4`
-  color: #f6f8fa;
+  color: #333344;
   font-size: 20px;
   line-height: 32px;
   /* margin-bottom: 5px; */
@@ -65,7 +65,7 @@ const Text = styled.h4`
 const GradientText = styled.h4`
   font-size: 16px;
   line-height: 24px;
-  background: linear-gradient(to right, #989dff, #c978d6);
+  background: linear-gradient(to right, #27c384, #c978d6);
   color: transparent;
   -webkit-background-clip: text;
 `;
@@ -101,7 +101,7 @@ const CircleBig = styled.div`
   width: 306px;
   height: 306px;
   border-radius: 50%;
-  background-color: #242430;
+  background-color: #ebeef1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,7 +111,7 @@ const CircleSmall = styled.div`
   width: 264px;
   height: 264px;
   border-radius: 50%;
-  background-color: #333344;
+  background-color: #b4b4c2;
   display: flex;
   align-items: center;
   justify-content: center;

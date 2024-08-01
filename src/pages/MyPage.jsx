@@ -316,7 +316,7 @@ const MyPage = () => {
               handleLogout();
             }}
           >
-            <a href={"https://ddubam.site/api/members/kakao/logout"}>
+            <a href={"https://sodamsodam.site/api/members/kakao/logout"}>
               로그아웃
             </a>
           </Text>

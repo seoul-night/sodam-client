@@ -12,7 +12,7 @@ import { createRequest } from "../utils/api-utils";
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -30,13 +30,13 @@ const Wrap = styled.div`
   /* border-bottom: 1px solid #91919c; */
 `;
 const WhiteText1 = styled.h4`
-  color: #f6f8fa;
+  color: black;
   margin-right: 16px;
   font-size: 20px;
   line-height: 21px;
 `;
 const WhiteText2 = styled.h4`
-  color: #f6f8fa;
+  color: black;
   margin-right: 16px;
   font-size: 16px;
   line-height: 21px;
@@ -61,7 +61,7 @@ const DetailWrap = styled.div`
 const Footer = styled.div`
   position: fixed;
   bottom: 0;
-  background-color: #1c1c26;
+  background-color: #ffffff;
   z-index: 3;
   left: 0;
   right: 0;
@@ -69,7 +69,7 @@ const Footer = styled.div`
   max-width: var(--max-width);
   width: 100%;
   height: 104px;
-  border-top: 2px solid #242430;
+  border-top: 2px solid #ebeef1;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@ const Footer = styled.div`
 const Button = styled.button`
   width: 261px;
   height: 56px;
-  background-color: #5e66ff;
+  background-color: #27c384;
   color: #f6f8fa;
   font-size: 16px;
   border-radius: 10px;
@@ -88,7 +88,7 @@ const Button = styled.button`
   transition: all 0.3s;
 
   &:hover {
-    background-color: #4950d4;
+    background-color: #007d4b;
   }
 `;
 
@@ -154,7 +154,7 @@ const PathDetail = () => {
 
     try {
       // 수정된 부분: createRequest 사용
-      await createRequest(method, "/members/walks/select", sendingData); 
+      await createRequest(method, "/members/walks/select", sendingData);
       setLike(!liked); // 요청이 성공하면 상태 변경
     } catch (error) {
       console.error("Error:", error);
@@ -176,7 +176,7 @@ const PathDetail = () => {
           />
         )}
       </MapContainer>
-      <Wrap style={{ borderBottom: "1px solid #242430", gap: "4px" }}>
+      <Wrap style={{ borderBottom: "1px solid #EBEEF1", gap: "4px" }}>
         <WhiteText1 style={{ fontSize: "20px", marginBottom: "10px" }}>
           {fetchedData.title}
         </WhiteText1>

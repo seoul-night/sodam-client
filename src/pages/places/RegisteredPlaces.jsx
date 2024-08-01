@@ -100,7 +100,7 @@ const RegisteredPlaces = () => {
 
   return (
     <HomeWrapper className="All">
-      <Header headerText={"등록한 장소"} icon={place} />
+      <Header headerText={"등록한 장소"} icon={place} navTo={"/mypage"} />
       <BlackText>장소 등록하기</BlackText>
       <SearchBar onClick={() => navigate("/searchPlace")}>
         <FontAwesomeIcon icon={faSearch} style={{ marginRight: "8px" }} />
@@ -115,16 +115,6 @@ const RegisteredPlaces = () => {
       </Wrapper>
       {isLoading && <Spinner />}
       <PlacesUl>
-        {/* <PlacesLi>
-          <div>
-            <PlaceName>부모님 집</PlaceName>
-            <PlaceLocation>경기도 부천시 ~~</PlaceLocation>
-          </div>
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            style={{ marginRight: "8px", color: "#91919C" }}
-          />
-        </PlacesLi> */}
         {data &&
           data.map((place, i) => (
             <PlacesLi key={i}>
